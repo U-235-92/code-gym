@@ -11,7 +11,7 @@ public class Queue {
 		queue = new int[size];
 		rear = 0;
 		front = 0;
-		size = 0;
+		this.size = 0;
 	}
 	
 	public void insert(int val) {
