@@ -7,45 +7,55 @@ import java.util.stream.Stream;
 public class LuckyNumber {
 
 	public static void printFiltredLuckyNumbersFrom(Integer[] numbers) {
-		Set<Integer> guessesInfinityCalculate = new HashSet<>();
+		Set<Integer> calculatedNumbersBuffer = new HashSet<>();
 		System.out.print("Lucky numbers: ");
 		for(int number : numbers) {
 			if(number == 0) {
 				continue;
 			}
 			int tmp = number;
-			int luckyCheck = 0;
-			boolean isContinueCalculate = false;
-			while(luckyCheck != 1 || luckyCheck != number) {
+			int luckyNumberGuess = 0;
+			while(luckyNumberGuess != 1) {
 				if(tmp <= 9 && tmp > 0) {
-					luckyCheck = luckyCheck + (tmp * tmp);
-					isContinueCalculate = guessesInfinityCalculate.add(luckyCheck);
-					if(!isContinueCalculate) {
+					luckyNumberGuess = luckyNumberGuess + (tmp * tmp);
+					if(isInfinityCalculate(calculatedNumbersBuffer, luckyNumberGuess)) 
 						break;
-					}
-					tmp = luckyCheck;
-					luckyCheck = 0;
+					if(isLuckyNumber(luckyNumberGuess)) 
+						break;
+					tmp = luckyNumberGuess;
+					luckyNumberGuess = 0;
 				} else {
-					luckyCheck = luckyCheck + ((tmp % 10) * (tmp % 10));
+					luckyNumberGuess = luckyNumberGuess + ((tmp % 10) * (tmp % 10));
 					tmp = tmp / 10;
 					if(tmp <= 9 && tmp > 0) {
-						luckyCheck = luckyCheck + (tmp * tmp);
-						isContinueCalculate = guessesInfinityCalculate.add(luckyCheck);
-						if(!isContinueCalculate) {
+						luckyNumberGuess = luckyNumberGuess + (tmp * tmp);
+						if(isInfinityCalculate(calculatedNumbersBuffer, luckyNumberGuess)) 
 							break;
-						}
-						if(luckyCheck == 1 || luckyCheck == number) 
+						if(isLuckyNumber(luckyNumberGuess)) 
 							break;
-						tmp = luckyCheck;
-						luckyCheck = 0;
+						tmp = luckyNumberGuess;
+						luckyNumberGuess = 0;
 					} 
 				}
 			}
-			if(luckyCheck == 1) {
+			if(isLuckyNumber(luckyNumberGuess)) {
 				System.out.print(number + " ");
 			}
 		}
 		System.out.println();
+	}
+	
+	private static boolean isInfinityCalculate(Set<Integer> calculatedNumbersBuffer, int luckyCheck) {
+		boolean isContinueCalculate = false;
+		isContinueCalculate = calculatedNumbersBuffer.add(luckyCheck);
+		if(!isContinueCalculate) {
+			return true;
+		}
+		return false;
+	}
+	
+	private static boolean isLuckyNumber(int number) {
+		return number == 1;
 	}
 	
 	public static void printGeneratedLuckyNumbers(int limit) {

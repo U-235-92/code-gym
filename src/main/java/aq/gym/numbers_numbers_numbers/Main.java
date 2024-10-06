@@ -10,11 +10,13 @@ import static aq.gym.numbers_numbers_numbers.PrimeNumber.printGeneratedPrimeNumb
 import static aq.gym.numbers_numbers_numbers.PrimeNumber.printPrimeNumbersFrom;
 import static aq.gym.numbers_numbers_numbers.LuckyNumber.printGeneratedLuckyNumbers;
 import static aq.gym.numbers_numbers_numbers.LuckyNumber.printFiltredLuckyNumbersFrom;
+import static aq.gym.numbers_numbers_numbers.Palindrome.printPalindromeFrom;
+import static aq.gym.numbers_numbers_numbers.FrequensyNumbers.printSortedNumbersByFrequensy;
 
 public class Main {
 
 	public static void main(String[] args) {
-		//1 2 3 4 5 7 8 9 555 0 999 81 92 888 129 73 4 56 4224 4223 5885 123 345 222 85 59 99 127 (args)
+		//1 2 3 4 5 6 7 8 9 555 0 999 81 92 888 129 5 73 4 56 5 4224 4223 5 5885 123 345 222 8 85 59 99 127 (args[])
 		Integer[] numbers = Arrays.stream(args).map(str -> Integer.valueOf(str).intValue()).toArray(Integer[]::new);
 		System.out.println("Orig: " + Arrays.toString(numbers));
 		printEvenNumbers(numbers);
@@ -26,5 +28,7 @@ public class Main {
 		printGeneratedPrimeNumbers(20);
 		printFiltredLuckyNumbersFrom(numbers);
 		printGeneratedLuckyNumbers(20);
+		printPalindromeFrom(numbers);
+		printSortedNumbersByFrequensy(numbers);
 	}
 }
