@@ -12,6 +12,11 @@ import static aq.gym.numbers_numbers_numbers.LuckyNumber.printGeneratedLuckyNumb
 import static aq.gym.numbers_numbers_numbers.LuckyNumber.printFiltredLuckyNumbersFrom;
 import static aq.gym.numbers_numbers_numbers.Palindrome.printPalindromeFrom;
 import static aq.gym.numbers_numbers_numbers.FrequensyNumbers.printSortedNumbersByFrequensy;
+import static aq.gym.numbers_numbers_numbers.AverageNumberLength.printNumbersWhichMinAverageLength;
+import static aq.gym.numbers_numbers_numbers.NumberAnalizer.printNumberWhichHasMinimumNumberOfDifferentNumbers;
+import static aq.gym.numbers_numbers_numbers.NumberAnalizer.printNumberHasSameNumberOfOddAndEvenNumbers;
+import static aq.gym.numbers_numbers_numbers.NumberAnalizer.printNumbersWhichHaveNumberInAscOrder;
+import static aq.gym.numbers_numbers_numbers.NumberAnalizer.printNumbersWhichHaveDifferentNumbers;
 
 public class Main {
 
@@ -30,5 +35,10 @@ public class Main {
 		printGeneratedLuckyNumbers(20);
 		printPalindromeFrom(numbers);
 		printSortedNumbersByFrequensy(numbers);
+		printNumbersWhichMinAverageLength(numbers);
+		printNumberWhichHasMinimumNumberOfDifferentNumbers(numbers);
+		printNumberHasSameNumberOfOddAndEvenNumbers(numbers);
+		printNumbersWhichHaveNumberInAscOrder(numbers);
+		printNumbersWhichHaveDifferentNumbers(numbers);
 	}
 }
