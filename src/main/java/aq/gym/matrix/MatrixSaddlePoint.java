@@ -29,12 +29,11 @@ public class MatrixSaddlePoint {
 		List<Integer> maxColumnElements = new ArrayList<>();
 		int j = 0;
 		while(j < matrix[0].length) {
-			int max = 0;
-			for(int i = 0; i < matrix.length - 1; i++) {
-				max = matrix[i][j];
-				int next = matrix[i + 1][j];
-				if(next > max) {
-					max = next;
+			int max = Integer.MIN_VALUE;
+			for(int i = 0; i < matrix.length; i++) {
+				int columnElement = matrix[i][j];
+				if(columnElement > max) {
+					max = columnElement;
 				}
 			}			
 			maxColumnElements.add(max);
@@ -44,6 +43,10 @@ public class MatrixSaddlePoint {
 		Set<Integer> saddleSet = new HashSet<Integer>(maxColumnElements);
 		saddleSet.retainAll(minRowElements);
 		//print result
-		System.out.println("Saddle element of matrix: " + saddleSet);
+		if(saddleSet.size() > 0) {			
+			System.out.println("Saddle element of matrix: " + saddleSet);
+		} else {
+			System.out.println("Matrix hasn't got any saddle element!");
+		}
 	}
 }
