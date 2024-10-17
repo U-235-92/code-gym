@@ -1,4 +1,4 @@
-package aq.gym.stream_trader_transaction;
+package aq.gym.stream.trader_transaction;
 
 import java.util.Comparator;
 import java.util.List;

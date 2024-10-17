@@ -1,4 +1,4 @@
-package aq.gym.stream_number_pairs;
+package aq.gym.stream.number_pairs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
