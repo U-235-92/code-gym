@@ -2,6 +2,7 @@ package aq.gym.prime_numbers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
@@ -9,6 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println(naiveWay(100));
 		System.out.println(sieveWay(100));
+		System.out.println(streamWay(100));
 	}
 
 	public static ArrayList<Integer> naiveWay(int limit) {
@@ -32,7 +34,7 @@ public class Main {
 		}
 		return primes;
 	}
-
+	
 	public static List<Integer> sieveWay(int limit) {
 		final int NOT_PRIME = -1;
 		Integer[] numbers = Stream.iterate(0, number -> number + 1).limit(limit).toArray(Integer[]::new);
@@ -49,5 +51,11 @@ public class Main {
 			}
 		}
 		return primes;
+	}
+	
+	public static List<Integer> streamWay(int limit) {
+		return IntStream.rangeClosed(2, limit)
+			.filter(num -> IntStream.range(2, num).allMatch(inner -> num % inner != 0))
+			.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
 	}
 }
