@@ -11,8 +11,28 @@ public class Main {
 		System.out.println(naiveWay(100));
 		System.out.println(sieveWay(100));
 		System.out.println(streamWay(100));
+		System.out.println(bruteForceWay(100));
 	}
 
+	public static ArrayList<Integer> bruteForceWay(int limit) {
+		ArrayList<Integer> primes = new ArrayList<>();
+		for(int i = 2; i <= limit; i++) {
+			if(isPrime(i)) {
+				primes.add(i);
+			}
+		}
+		return primes;
+	}
+	
+	private static boolean isPrime(int number) {
+		for(int i = 2; i < number; i++) {
+			if(number % i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public static ArrayList<Integer> naiveWay(int limit) {
 		ArrayList<Integer> primes = new ArrayList<>();
 		Integer[] numbers = Stream.iterate(2, number -> number + 1).limit(limit - 1).toArray(Integer[]::new);
