@@ -8,6 +8,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,6 +24,37 @@ public class WordCounter {
 		Map<String, Long> statMapWay = wordStatisticMapWay(wordsStreamMap); 
 		statMapWay = sort(statMapWay, Map.Entry.comparingByValue());
 		System.out.println(statMapWay);
+		System.out.println(trickyWordCounter("Ежик ёжик ежик иод, йод!"));
+	}
+	
+	private static Map<String, Long> trickyWordCounter(String text) {
+		Map<String, Long> map = Arrays.stream(text.split("\\s+"))
+				.map(str -> str.replaceAll("\\p{Punct}", ""))
+				.filter(word -> word.matches("[а-яёА-Я]+"))
+				.collect(Collectors.groupingBy(word -> {
+					Pattern patternё = Pattern.compile("[ё]");
+					Matcher matcherё = patternё.matcher(word);
+					if(matcherё.find()) {
+						word = word.replaceAll("ё", "е");
+					}
+					Pattern patternЁ = Pattern.compile("[Ё]");
+					Matcher matcherЁ = patternЁ.matcher(word);
+					if(matcherЁ.find()) {
+						word = word.replaceAll("Ё", "Е");
+					}
+					Pattern patternй = Pattern.compile("[й]");
+					Matcher matcherй = patternй.matcher(word);
+					if(matcherй.find()) {
+						word = word.replaceAll("й", "и");
+					}
+					Pattern patternЙ = Pattern.compile("[Й]");
+					Matcher matcherЙ = patternЙ.matcher(word);
+					if(matcherЙ.find()) {
+						word = word.replaceAll("Й", "И");
+					}
+					return word;
+				}, Collectors.counting()));
+		return map;
 	}
 	
 	private static Stream<String> wordsStream(File file) throws IOException {
