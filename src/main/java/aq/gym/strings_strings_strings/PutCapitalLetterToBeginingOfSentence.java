@@ -12,7 +12,7 @@ public class PutCapitalLetterToBeginingOfSentence {
 	}
 	
 	private static String put(String text) {
-		Pattern sentencePattern = Pattern.compile("[a-zA-Z][a-zA-Z,;\\s]+[.!?]+\\s*", Pattern.MULTILINE);
+		Pattern sentencePattern = Pattern.compile("[a-zA-Z][a-zA-Z0-9,:'\"\\s]*[;.!?]+\\s*", Pattern.MULTILINE);
 		Matcher sentenceMatcher = sentencePattern.matcher(text);
 		StringBuilder result = new StringBuilder();
 		while(sentenceMatcher.find()) {
