@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 public class TrickySorter {
 
 	public static void main(String[] args) {
-		String text = "acbd, ghgks ikogd";
-		sortAllWordsStartsVowelAndSortByFirsConsonantLetter(text);
+		sortAllWordsStartsVowelAndSortByFirsConsonantLetter("acbd, ghgks ikogd");
+		sortAllWordsByDescLengthAndAscVowelLetters("The quick brown fox jumps over the lazy dog");
 	}
 
 	private static void sortAllWordsStartsVowelAndSortByFirsConsonantLetter(String text) {
@@ -33,5 +33,29 @@ public class TrickySorter {
 				return word;
 			})
 			.forEach(word -> System.out.print(word + " "));
+		System.out.println();
+	}
+	
+	private static void sortAllWordsByDescLengthAndAscVowelLetters(String text) {
+		String[] words = text.split("\\s+|\\p{Punct}+\\s*");
+		Pattern vowelPattern = Pattern.compile("[aeiouAEIOU]");
+		Comparator<String> numberOfvowelComparator = (s1, s2) -> {
+			int numberOfVowelsS1 = 0;
+			int numberOfVowelsS2 = 0;
+			Matcher vowelMatcher = vowelPattern.matcher(s1);
+			while(vowelMatcher.find()) 
+				numberOfVowelsS1++;
+			vowelMatcher = vowelMatcher.reset(s2);
+			while(vowelMatcher.find()) 
+				numberOfVowelsS2++;
+			return Integer.compare(numberOfVowelsS1, numberOfVowelsS2);
+		};
+		Arrays.stream(words)
+			.sorted(Comparator
+					.comparing(String::length)
+					.reversed()
+					.thenComparing(numberOfvowelComparator))
+			.forEach(word -> System.out.print(word + " "));
+		System.out.println();
 	}
 }
