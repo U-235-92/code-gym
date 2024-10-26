@@ -2,6 +2,11 @@ package aq.gym.numbers_numbers_numbers;
 
 public class Palindrome {
 
+	public static void main(String[] args) {
+		Integer[] numbers = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 555, 0, 999, 81, 92, 888, 129, 5, 73, 4, 56, 5, 4224, 4223, 5, 5885, 123, 345, 222, 8, 85, 59, 99, 127};
+		printPalindromeFrom(numbers);
+	}
+	
 	public static void printPalindromeFrom(Integer[] numbers) {
 		System.out.print("Palndromes: ");
 		for (int number : numbers) {

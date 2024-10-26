@@ -2,6 +2,12 @@ package aq.gym.numbers_numbers_numbers;
 
 public class MinMaxNumber {
 
+	public static void main(String[] args) {
+		Integer[] numbers = new Integer[]{1234, 222, 45, 987};
+		printMin(numbers);
+		printMax(numbers);
+	}
+	
 	public static void printMin(Integer[] numbers) {
 		int min = Integer.MAX_VALUE;
 		for(int number : numbers) {

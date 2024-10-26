@@ -10,6 +10,7 @@ public class Fibonacci {
 	public static void main(String[] args) {
 		System.out.println(cycleWay(10));
 		System.out.println(streamWay(10)); 
+		System.out.println(recursionWay(9));
 	}
 	
 	private static List<Integer> cycleWay(int limit) {
@@ -32,5 +33,12 @@ public class Fibonacci {
 				.limit(limit)
 				.map(arr -> arr[0])
 				.collect(Collectors.toList());
+	}
+	
+	private static int recursionWay(int limit) {
+		if(limit <= 1) {
+			return limit;
+		}
+		return recursionWay(limit - 2) + recursionWay(limit - 1);
 	}
 }

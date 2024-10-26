@@ -7,6 +7,14 @@ import java.util.Set;
 
 public class NumberAnalizer {
 
+	public static void main(String[] args) {
+		Integer[] numbers = new Integer[]{1234, 222, 45, 987};
+		printNumberWhichHasMinimumNumberOfDifferentNumbers(numbers);
+		printNumberHasSameNumberOfOddAndEvenNumbers(numbers);
+		printNumbersWhichHaveNumberInAscOrder(numbers);
+		printNumbersWhichHaveDifferentNumbers(numbers);
+	}
+	
 	public static void printNumbersWhichHaveDifferentNumbers(Integer[] numbers) {
 		System.out.print("Numbers have different numbers: ");
 		for(int number : numbers) {

@@ -2,6 +2,11 @@ package aq.gym.numbers_numbers_numbers;
 
 public class NotSameNumbersInNumber {
 
+	public static void main(String[] args) {
+		Integer[] numbers = new Integer[]{1234, 222, 45, 987};
+		printNotSameNumber(numbers);
+	}
+	
 	public static void printNotSameNumber(Integer[] numbers) {
 		System.out.print("Not same numbers [xxx] format: ");
 		for(int number : numbers) {
