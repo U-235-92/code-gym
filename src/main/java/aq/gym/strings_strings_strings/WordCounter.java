@@ -30,27 +30,27 @@ public class WordCounter {
 	private static Map<String, Long> trickyWordCounter(String text) {
 		Map<String, Long> map = Arrays.stream(text.split("\\s+"))
 				.map(str -> str.replaceAll("\\p{Punct}", ""))
-				.filter(word -> word.matches("[–∞-—è—ë–ê-–Ø]+"))
+				.filter(word -> word.matches("[‡-ˇ∏¿-ﬂ]+"))
 				.collect(Collectors.groupingBy(word -> {
-					Pattern pattern—ë = Pattern.compile("[—ë]");
-					Matcher matcher—ë = pattern—ë.matcher(word);
-					if(matcher—ë.find()) {
-						word = word.replaceAll("—ë", "–µ");
+					Pattern pattern∏ = Pattern.compile("[∏]");
+					Matcher matcher∏ = pattern∏.matcher(word);
+					if(matcher∏.find()) {
+						word = word.replaceAll("∏", "Â");
 					}
-					Pattern pattern–Å = Pattern.compile("[–Å]");
-					Matcher matcher–Å = pattern–Å.matcher(word);
-					if(matcher–Å.find()) {
-						word = word.replaceAll("–Å", "–ï");
+					Pattern pattern® = Pattern.compile("[®]");
+					Matcher matcher® = pattern®.matcher(word);
+					if(matcher®.find()) {
+						word = word.replaceAll("®", "≈");
 					}
-					Pattern pattern–π = Pattern.compile("[–π]");
-					Matcher matcher–π = pattern–π.matcher(word);
-					if(matcher–π.find()) {
-						word = word.replaceAll("–π", "–∏");
+					Pattern patternÈ = Pattern.compile("[È]");
+					Matcher matcherÈ = patternÈ.matcher(word);
+					if(matcherÈ.find()) {
+						word = word.replaceAll("È", "Ë");
 					}
-					Pattern pattern–ô = Pattern.compile("[–ô]");
-					Matcher matcher–ô = pattern–ô.matcher(word);
-					if(matcher–ô.find()) {
-						word = word.replaceAll("–ô", "–ò");
+					Pattern pattern… = Pattern.compile("[…]");
+					Matcher matcher… = pattern….matcher(word);
+					if(matcher….find()) {
+						word = word.replaceAll("…", "»");
 					}
 					return word;
 				}, Collectors.counting()));
