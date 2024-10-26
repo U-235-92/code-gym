@@ -1,4 +1,4 @@
-package aq.gym.strings_strings_strings;
+package aq.gym.encoders.step_encoder;
 
 public class StepEncoder {
 

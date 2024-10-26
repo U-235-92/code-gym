@@ -1,4 +1,4 @@
-package aq.gym.simple_encode_decode_string;
+package aq.gym.encoders.xor_encoder;
 
 import java.io.IOException;
 
