@@ -1,6 +1,6 @@
-package aq.gym.algorithms_and_structures.recursion;
+package aq.gym.algorithms_and_structures.recursion.primitive;
 
-public class Recursion {
+public class PrimitiveRecursion {
 
 	public static void main(String[] args) {
 		System.out.printf("Reverse of %s: " + reverseString("ABCDEF") + "%n", "ABCDEF");
