@@ -1,4 +1,4 @@
-package aq.gym.collections_things;
+package aq.gym.collections.collections_things;
 
 import java.util.Arrays;
 import java.util.HashMap;
