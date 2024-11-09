@@ -1,10 +1,9 @@
 package aq.gym.thread.store;
 
-import java.util.Optional;
-
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @RequiredArgsConstructor
 @Getter
@@ -12,14 +11,23 @@ public class Customer {
 
 	@NonNull
 	private String name;
+	@Setter
 	private CashDesk currentCashDesk;
-
-	public Optional<CashDesk> lookForBestCashDesk(Store store) {
-		return null;
-	}
 	
-	public void serviceCustomer(CashDesk cashDesk) {
-		System.out.println(name + " was serviced by " + cashDesk.getName() 
-				+ " queue size: " + cashDesk.getQueueSize());
+	public CashDesk tryToFindCashDeskMinSizeQueue(Store store) {
+		int minQueueSize = store.getCashDesks()
+				.stream()
+				.map(CashDesk::getQueueSize)
+				.min(Integer::compareTo)
+				.get();
+		if(currentCashDesk.getQueueSize() - minQueueSize <= 1) {
+			return currentCashDesk;
+		} else {			
+			return store.getCashDesks()
+					.stream()
+					.dropWhile(cashDesk -> cashDesk.getQueueSize() != minQueueSize)
+					.findFirst()
+					.orElse(currentCashDesk);
+		}
 	}
 }

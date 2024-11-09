@@ -11,6 +11,7 @@ public class Store {
 	private int totalNumberCustomers;
 	
 	public Store(List<CashDesk> cashDesks) {
+		cashDesks.forEach(cashDesk -> cashDesk.setStore(this));
 		totalNumberCustomers = cashDesks.stream().map(CashDesk::getQueueSize).reduce(Integer::sum).get();
 		this.cashDesks.addAll(cashDesks);
 	}
@@ -22,15 +23,15 @@ public class Store {
 		}
 	}
 	
-	public void incrementCountServicedPersons() {
-		numberServicedCustomers.incrementAndGet();
-	}
-	
 	public int getTotalNumberCustomers() {
 		return totalNumberCustomers;
 	}
 
 	public int getCurrentNumberServicedCustomers() {
-		return numberServicedCustomers.get();
+		return numberServicedCustomers.incrementAndGet();
+	}
+	
+	public List<CashDesk> getCashDesks() {
+		return List.copyOf(cashDesks);
 	}
 }

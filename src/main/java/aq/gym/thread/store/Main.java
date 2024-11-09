@@ -18,9 +18,9 @@ public class Main {
 		Customer k = new Customer("K");
 		Customer l = new Customer("L");
 		Customer m = new Customer("M");
-		CashDesk cashDesk1 = new CashDesk("CASH DESK #1", List.of(a, b, c, d, e));
-		CashDesk cashDesk2 = new CashDesk("CASH DESK #2", List.of(f, g, h, i));
-		CashDesk cashDesk3 = new CashDesk("CASH DESK #3", List.of(j, k, l, m));
+		CashDesk cashDesk1 = new CashDesk("CASH DESK #1", List.of(a, b, c, d, e, f, j, g));
+		CashDesk cashDesk2 = new CashDesk("CASH DESK #2", List.of(h, i));
+		CashDesk cashDesk3 = new CashDesk("CASH DESK #3", List.of(k, l, m));
 		Store store = new Store(List.of(cashDesk1, cashDesk2, cashDesk3));
 		System.out.println("Store has: " + store.getTotalNumberCustomers() + " persons");
 		store.service();
