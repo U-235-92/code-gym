@@ -7,11 +7,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Store {
 
 	private List<CashDesk> cashDesks = new ArrayList<CashDesk>();
-	private AtomicInteger numberServicedPersons = new AtomicInteger(0);
-	private int totalPersons;
+	private AtomicInteger numberServicedCustomers = new AtomicInteger(0);
+	private int totalNumberCustomers;
 	
-	public void addCashDesks(List<CashDesk> cashDesks) {
-		totalPersons = cashDesks.stream().map(CashDesk::getQueueSize).reduce(Integer::sum).get();
+	public Store(List<CashDesk> cashDesks) {
+		cashDesks.forEach(cashDesk -> cashDesk.setStore(this));
+		totalNumberCustomers = cashDesks.stream().map(CashDesk::getQueueSize).reduce(Integer::sum).get();
 		this.cashDesks.addAll(cashDesks);
 	}
 	
@@ -22,20 +23,15 @@ public class Store {
 		}
 	}
 	
-	public List<CashDesk> getCashDesks() {
-		return List.copyOf(cashDesks);
-	}
-	
-	
-	public void incrementCountServicedPersons() {
-		numberServicedPersons.incrementAndGet();
-	}
-	
-	public int getTotalNumberOfPersons() {
-		return totalPersons;
+	public int getTotalNumberCustomers() {
+		return totalNumberCustomers;
 	}
 
-	public int getCountServicedPersons() {
-		return numberServicedPersons.get();
+	public int getCurrentNumberServicedCustomers() {
+		return numberServicedCustomers.incrementAndGet();
+	}
+	
+	public List<CashDesk> getCashDesks() {
+		return List.copyOf(cashDesks);
 	}
 }
