@@ -34,9 +34,13 @@ public class Dijkstra {
 		}
 	}
 	
-	public void calculatePath() {
-		int pathCost = 0;
-		Queue<Node> pathQueue = new LinkedList<Node>();
+	public void calculateShortestPath() {
+		calculateShortestPath0();
+		Queue<Node> pathQueue = makeShortestPath();
+		printShortestPath(pathQueue);
+	}
+
+	private void calculateShortestPath0() {
 		Node minCostNode = getMinCostNode(costs);
 		while(minCostNode != null) {
 			int currentMinCostNode = costs.get(minCostNode);
@@ -47,21 +51,36 @@ public class Dijkstra {
 					costs.put(node, totalCost);
 					node.setParent(minCostNode);
 					node.setMinCost(totalCost);
-					if(node == endNode) {						
-						endNode.setParent(minCostNode);
-						endNode.setMinCost(totalCost);
-					}
 				}
 			}
 			minCostNode.setVisited(true);
 			minCostNode = getMinCostNode(costs);
 		}
+	}
+	
+	private Node getMinCostNode(Map<Node, Integer> costs) {
+		return costs.entrySet()
+				.stream()
+				.sorted((entry1, entry2) -> entry1.getValue().compareTo(entry2.getValue()))
+				.map(Map.Entry::getKey)
+				.filter(node -> !node.isVisited())
+				.findFirst()
+				.orElse(null);
+	}
+	
+	private Queue<Node> makeShortestPath() {
+		Queue<Node> pathQueue = new LinkedList<Node>();
 		while(endNode != null) {
 			pathQueue.offer(endNode);
 			endNode = endNode.getParent();
 		}
 		pathQueue.offer(startNode);
-		System.out.print("Path: ");
+		return pathQueue;
+	}
+	
+	private void printShortestPath(Queue<Node> pathQueue) {
+		int pathCost = 0;
+		System.out.print("Shortest path: ");
 		while(pathQueue.size() != 0) {
 			Node node = pathQueue.poll();
 			pathCost += node.getMinCost();
@@ -72,15 +91,5 @@ public class Dijkstra {
 			}
 		}
 		System.out.println(", path cost = " + pathCost);
-	}
-
-	private Node getMinCostNode(Map<Node, Integer> costs) {
-		return costs.entrySet()
-				.stream()
-				.sorted((entry1, entry2) -> entry1.getValue().compareTo(entry2.getValue()))
-				.map(Map.Entry::getKey)
-				.filter(node -> !node.isVisited())
-				.findFirst()
-				.orElse(null);
 	}
 }
