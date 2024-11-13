@@ -18,6 +18,7 @@ public class Main {
 		graph.put(s, Map.of(l, 6, p, 3));
 		graph.put(l, Map.of(f, 1));
 		graph.put(p, Map.of(l, 2, f, 2));
+		graph.put(f, Map.of());
 		Dijkstra dijkstra = new Dijkstra(s, f, graph);
 		dijkstra.calculateShortestPath();
 	}
