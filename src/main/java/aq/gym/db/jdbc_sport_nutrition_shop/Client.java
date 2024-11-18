@@ -5,8 +5,10 @@ import java.util.List;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 @EqualsAndHashCode(callSuper = true)
+@ToString
 public class Client extends Entity {
 
 	@Getter
@@ -35,4 +37,6 @@ public class Client extends Entity {
 	public void addOrder(Order order) {
 		orders.add(order);
 	}
+	
+	
 }

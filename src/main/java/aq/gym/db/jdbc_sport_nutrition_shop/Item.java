@@ -3,8 +3,10 @@ package aq.gym.db.jdbc_sport_nutrition_shop;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @EqualsAndHashCode(callSuper = true)
+@ToString
 public class Item extends Entity {
 
 	@Getter @Setter

@@ -9,6 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE, staticName = "getInstance")
 public class ClientDAOImpl implements ClientDAO {
 
 	private static final String SQL_SELECT_CLIENTS = "SELECT * FROM clients";
@@ -17,193 +21,43 @@ public class ClientDAOImpl implements ClientDAO {
 	private static final String SQL_UPDATE_CLIENT = "UPDATE clients SET clients.name = ? WHERE clients.id = ?";
 	private static final String SQL_CREATE_CLIENT = "INSERT INTO clients(name) VALUES(?)";
 
-	private Connection connection;
-	private Transaction transaction;
-
-	public ClientDAOImpl(Connection connection, Transaction transaction) {
-		this.connection = connection;
-		this.transaction = transaction;
-	}
-
-//	public int addClients(List<Client> clients) {
-//		int rowsInserted = 0;
-//		try {
-//			transaction.begin();
-//			PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_CLIENT);
-//			for(Client client : clients) {
-//				preparedStatement.setString(1, client.getName());
-//				preparedStatement.addBatch();
-//			}
-//			int[] inserted = preparedStatement.executeBatch();
-//			rowsInserted = Arrays.stream(inserted).reduce(0, Integer::sum);
-//			transaction.commit();
-//		} catch (SQLException e) {
-//			transaction.rollback();
-//			e.printStackTrace();
-//		} finally {
-//			transaction.end();
-//		}
-//		return rowsInserted;
-//	}
-//
-//	public List<Client> readAllClients(OrderDAOImpl orderDAO, ItemDAOImpl itemDao) {
-//		List<Client> clients = readAllClients0();
-//		for(Client client : clients) {			
-//			List<Order> orders = orderDAO.readAllOrdersByClientID(client.getId());
-//			client.addOrders(orders);
-//			for(Order order : orders) {				
-//				List<Item> items = itemDao.readItemsByOrderID(order.getId());
-//				order.addItems(items);				
-//			}
-//		}
-//		return clients;
-//	}
-//	
-//	private List<Client> readAllClients0() {
-//		List<Client> clients = new ArrayList<Client>();
-//		try {
-//			transaction.begin();
-//			PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_CLIENTS);
-//			ResultSet resultSet = preparedStatement.executeQuery();
-//			while(resultSet.next()) {
-//				int id = resultSet.getInt("id");
-//				String name = resultSet.getString("name");
-//				Client client = new Client(id, name);
-//				clients.add(client);
-//			}
-//			transaction.commit();
-//		} catch (SQLException e) {
-//			transaction.rollback();
-//			e.printStackTrace();
-//		} finally {
-//			transaction.end();
-//		}
-//		return clients;
-//	}
-//
-//	@Override
-//	public Optional<Client> readEntity(int id) {
-//		Client client = null;
-//		try {
-//			transaction.begin();
-//			PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_CLIENT_BY_ID);
-//			preparedStatement.setInt(1, id);
-//			ResultSet resultSet = preparedStatement.executeQuery();
-//			if(resultSet.next()) {
-//				String name = resultSet.getString("name");
-//				client = new Client(id, name);
-//			}
-//			transaction.commit();
-//		} catch (SQLException e) {
-//			transaction.rollback();
-//			e.printStackTrace();
-//		} finally {
-//			transaction.end();
-//		}
-//		return Optional.ofNullable(client);
-//	}
-//
-//	@Override
-//	public boolean deleteEntity(int id) {
-//		boolean operationResult = false;
-//		try {
-//			transaction.begin();
-//			PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_CLIENT_BY_ID);
-//			preparedStatement.setInt(1, id);
-//			preparedStatement.executeUpdate();
-//			operationResult = true;
-//			transaction.commit();
-//		} catch (SQLException e) {
-//			transaction.rollback();
-//			e.printStackTrace();
-//		} finally {
-//			transaction.end();
-//		}
-//		return operationResult;
-//	}
-//
-//	@Override
-//	public void createClient(Client client, OrderDAO orderDAO) {
-//		createClient0(client);
-//		createClientOrdersIfOrdersExist(client, orderDAO);
-//	}
-//	
-//	private void createClient0(Client client) {
-//		try {
-//			transaction.begin();
-//			PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_CLIENT);
-//			preparedStatement.setString(1, client.getName());
-//			preparedStatement.executeUpdate();
-//			transaction.commit();
-//		} catch (SQLException e) {
-//			transaction.rollback();
-//			e.printStackTrace();
-//		} finally {
-//			transaction.end();
-//		}
-//	}
-//	
-//	private void createClientOrdersIfOrdersExist(Client client, OrderDAO orderDAO) {
-//		if(client.getOrders().size() > 0) {
-//			orderDAO.createOrderByClient(client);
-//		}
-//	}
-//
-//	@Override
-//	public int updateEntity(int id, Client entity) {
-//		int rowsUpdated = 0;
-//		try {
-//			transaction.begin();
-//			PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_CLIENT);
-//			preparedStatement.setString(1, entity.getName());
-//			preparedStatement.setInt(2, id);
-//			rowsUpdated = preparedStatement.executeUpdate();
-//			transaction.commit();
-//		} catch (SQLException e) {
-//			transaction.rollback();
-//			e.printStackTrace();
-//		} finally {
-//			transaction.end();
-//		}
-//		return rowsUpdated;
-//	}
-
-	@Override
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
-
-	@Override
-	public void setTransaction(Transaction transaction) {
-		this.transaction = transaction;
-	}
-
 	@Override
 	public int createClients(List<Client> clients) {
 		int rowsInserted = 0;
-		try {
+		Transaction transaction = null;
+		try (Connection connection = ConnectionManager.getConnection()) {
+			transaction = new Transaction(connection);
 			transaction.begin();
-			PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_CLIENT);
-			for(Client client : clients) {
-				preparedStatement.setString(1, client.getName());
-				preparedStatement.addBatch();
-			}
-			int[] inserted = preparedStatement.executeBatch();
-			rowsInserted = Arrays.stream(inserted).reduce(0, Integer::sum);
+			rowsInserted = createClients(clients, connection);
 			transaction.commit();
 		} catch (SQLException e) {
-			transaction.rollback();
+			if(transaction != null)
+				transaction.rollback();
 			e.printStackTrace();
 		} finally {
-			transaction.end();
+			if(transaction != null)
+				transaction.end();
 		}
+		return rowsInserted;
+	}
+	
+	private int createClients(List<Client> clients, Connection connection) throws SQLException {
+		int rowsInserted = 0;
+		PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_CLIENT);
+		for(Client client : clients) {
+			preparedStatement.setString(1, client.getName());
+			preparedStatement.addBatch();
+		}
+		int[] inserted = preparedStatement.executeBatch();
+		rowsInserted = Arrays.stream(inserted).reduce(0, Integer::sum);
 		return rowsInserted;
 	}
 
 	@Override
 	public int createClient(Client client) {
 		int rowsInserted = 0;
-		try {
+		try (Connection connection = ConnectionManager.getConnection()) {
+			Transaction transaction = new Transaction(connection);
 			transaction.begin();
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_CLIENT);
 			preparedStatement.setString(1, client.getName());

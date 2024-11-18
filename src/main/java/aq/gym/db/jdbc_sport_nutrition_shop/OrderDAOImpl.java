@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class OrderDAOImpl implements OrderDAO {
+public class OrderDAOImpl implements OrderDAO {
 
 	private static final String SQL_SELECT_ORDERS_OF_CLIENT_BY_CLIENT_ID = "SELECT (orders.id, orders.date, orders.comment) FROM orders INNER JOIN clients ON clients.id = orders.client_id WHERE orders.client_id = ?";
 	private static final String SQL_SELECT_ORDERS = "SELECT (id, date, comment) FROM orders";

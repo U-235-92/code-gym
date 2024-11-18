@@ -22,21 +22,15 @@ public class ConnectionManager {
 	
 	private static void loadProperties() {
 		try {
-			properties.load(new FileReader("src/main/java/aq/gym/jdbc/sport_nutrition_shop/db.properties"));
+			final String path = "src/main/java/aq/gym/db/jdbc_sport_nutrition_shop/db.properties";
+			properties.load(new FileReader(path));
+			String driver = properties.getProperty("db.driver");
+			loadDriver(driver);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
-	}
-	
-	public static Connection getConnection() throws SQLException {
-		String driver = properties.getProperty("db.driver");
-		String user = properties.getProperty("db.user");
-		String password = properties.getProperty("db.password");
-		String dbUrl = properties.getProperty("db.url");
-		loadDriver(driver);
-		return DriverManager.getConnection(dbUrl, user, password);
 	}
 	
 	private static void loadDriver(String driver) {
@@ -45,5 +39,12 @@ public class ConnectionManager {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static Connection getConnection() throws SQLException {
+		String user = properties.getProperty("db.user");
+		String password = properties.getProperty("db.password");
+		String dbUrl = properties.getProperty("db.url");
+		return DriverManager.getConnection(dbUrl, user, password);
 	}
 }
