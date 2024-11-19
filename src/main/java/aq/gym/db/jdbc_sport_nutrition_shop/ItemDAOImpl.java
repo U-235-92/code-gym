@@ -26,20 +26,11 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public List<Item> readItems() {
 		List<Item> items = new ArrayList<Item>();
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			readItems(connection, items);
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)				
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)		
-				transaction.end();
-		}
+		} 
 		return items;
 	}
 
@@ -58,40 +49,22 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public Optional<Item> readItemById(int itemID) {
 		Item item = null;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			item = readItemById(connection, itemID);
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)		
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)		
-				transaction.end();
-		}
+		} 
 		return Optional.ofNullable(item);
 	}
 
 	@Override
 	public Optional<Item> readItemByName(String itemName) {
 		Item item = null;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			item = readItemByName(connection, itemName);
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)		
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)		
-				transaction.end();
-		}
+		} 
 		return Optional.ofNullable(item);
 	}
 	
@@ -111,23 +84,14 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public boolean createItem(Item item) {
 		boolean isItemCreate = false;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			if(!isItemExist(connection, item)) {						
 				createItem(connection, item);
 				isItemCreate = true;
-				transaction.commit();
 			}
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+		} 
 		return isItemCreate;
 	}
 
@@ -141,25 +105,17 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public int createItems(List<Item> items) {
 		int rowsInserted = 0;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			rowsInserted = createItems(connection, items);
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+		} 
 		return rowsInserted;
 	}
 	
 	private int createItems(Connection connection, List<Item> items) throws SQLException {
 		int rowsInserted = 0;
+		connection.setAutoCommit(false);
 		PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ITEM);
 		for(Item item : items) {
 			if(!isItemExist(connection, item)) {					
@@ -169,6 +125,8 @@ public class ItemDAOImpl implements ItemDAO {
 			}
 		}
 		int[] arrInsertedRows = preparedStatement.executeBatch();
+		connection.commit();
+		connection.setAutoCommit(true);
 		rowsInserted = Arrays.stream(arrInsertedRows).reduce(Integer::sum).getAsInt();
 		return rowsInserted;
 	}
@@ -176,23 +134,14 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public boolean deleteItemById(int itemID) {
 		boolean isItemDeleted = false;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			if(isItemExistById(connection, itemID)) {
 				deleteItemById(connection, itemID);
 				isItemDeleted = true;
 			}
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)	
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)	
-				transaction.end();
-		}
+		} 
 		return isItemDeleted;
 	}
 	
@@ -205,23 +154,14 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public boolean updateItemById(int itemID, Item item) {
 		boolean isItemUpdated = false;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			if(isItemExistById(connection, itemID)) {
 				updateItemById(connection, itemID, item);
 				isItemUpdated = true;
 			}
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)	
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)	
-				transaction.end();
-		}
+		} 
 		return isItemUpdated;
 	}
 
@@ -235,21 +175,12 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public boolean updateItemByName(String itemName, Item item) {
 		boolean isItemUpdated = false;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			updateItemByName(connection, itemName, item);
 			isItemUpdated = true;
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)	
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)	
-				transaction.end();
-		}
+		} 
 		return isItemUpdated;
 	}
 	

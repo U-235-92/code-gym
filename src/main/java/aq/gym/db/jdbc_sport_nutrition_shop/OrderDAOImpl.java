@@ -18,10 +18,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PACKAGE, staticName = "getInstance")
 public class OrderDAOImpl implements OrderDAO {
 
-	private static final String SQL_SELECT_ORDERS_OF_CLIENT_BY_CLIENT_ID = "SELECT (orders.id, orders.date, orders.comment) FROM orders INNER JOIN clients ON clients.id = orders.client_id WHERE orders.client_id = ?";
-	private static final String SQL_SELECT_ORDERS = "SELECT (id, date, comment) FROM orders";
-	private static final String SQL_SELECT_ORDER_BY_ORDER_ID = "SELECT (date, comment) FROM orders WHERE id = ?";
-	private static final String SQL_SELECT_ORDER_ITEMS_BY_ORDER_ID = "SELECT (items.id, items.name, items.amount) FROM items INNER JOIN orders_items ON items.id = orders_items.item_id WHERE orders_items.order_id = ?";
+	private static final String SQL_SELECT_ORDERS_OF_CLIENT_BY_CLIENT_ID = "SELECT orders.id, orders.date, orders.comment FROM orders INNER JOIN orders_clients ON orders_clients.order_id = orders.id WHERE orders_clients.client_id = ?";
+	private static final String SQL_SELECT_ORDERS = "SELECT id, date, comment FROM orders";
+	private static final String SQL_SELECT_ORDER_BY_ORDER_ID = "SELECT date, comment FROM orders WHERE id = ?";
+	private static final String SQL_SELECT_ORDER_ITEMS_BY_ORDER_ID = "SELECT items.id, items.name, items.amount FROM items INNER JOIN orders_items ON items.id = orders_items.item_id WHERE orders_items.order_id = ?";
 	private static final String SQL_DELETE_ORDER_FROM_ORDERS = "DELETE FROM orders WHERE id = ?";
 	private static final String SQL_DELETE_ORDER_FROM_ORDERS_CLIENTS_BY_CLIENTID_AND_ORDERID = "DELETE FROM orders_clients WHERE order_id = ? AND client_id = ?";
 	private static final String SQL_DELETE_ORDER_FROM_ORDERS_CLIENTS_BY_ORDERID = "DELETE FROM orders_clients WHERE order_id = ?";
@@ -34,20 +34,11 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public List<Order> readOrders() {
 		List<Order> orders = new ArrayList<Order>();
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			readOrders(connection, orders);
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)
-				e.printStackTrace();
-			transaction.rollback();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+			e.printStackTrace();
+		} 
 		return orders;
 	}
 
@@ -68,20 +59,11 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public List<Order> readOrdersOfClient(int clientID) {
 		List<Order> orders = new ArrayList<Order>();
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
-			readOrdersOfClient(null, clientID, orders);
-			transaction.commit();
+			readOrdersOfClient(connection, clientID, orders);
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+		} 
 		return orders;
 	}
 	
@@ -103,20 +85,11 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public Optional<Order> readOrder(int orderID) {
 		Order order = null;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			order = readOrder(connection, orderID);
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+		} 
 		return Optional.ofNullable(order);
 	}
 	
@@ -153,35 +126,23 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public boolean deleteOrderOfClient(int clientID, int orderID) {
 		boolean isOrderDeleted = false;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			if(isOrderExist(connection, orderID)) {				
 				deleteItemsFromOrdersItems(connection, orderID);
 				deleteOrderFromOrdersClients(connection, clientID, orderID);
 				deleteOrderFromOrders(connection, orderID);
 				isOrderDeleted = true;
 			}
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+		} 
 		return isOrderDeleted;
 	}
 	
 	@Override
 	public boolean deleteOrdersOfClient(int clientID) {
 		boolean isOrderDeleted = false;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			List<Order> orders = readOrdersOfClient(clientID);
 			for(Order order : orders) {
 				int orderID = order.getId();
@@ -192,14 +153,8 @@ public class OrderDAOImpl implements OrderDAO {
 					isOrderDeleted = true;
 				}
 			}
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
 		}
 		return isOrderDeleted;
 	}
@@ -207,25 +162,16 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public boolean deleteOrder(int orderID) {
 		boolean isOrderDeleted = false;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			if(isOrderExist(connection, orderID)) {				
 				deleteItemsFromOrdersItems(connection, orderID);
 				deleteOrderFromOrdersClients(connection, orderID);
 				deleteOrderFromOrders(connection, orderID);
 				isOrderDeleted = true;
 			}
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+		} 
 		return isOrderDeleted;
 	}
 	
@@ -265,24 +211,15 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public boolean updateOrder(int orderID, Order updateOrderData) {
 		boolean isOrderUpdate = false;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);			
-			transaction.begin();
 			if(isOrderExist(connection, orderID)) {				
 				updateOrderInOrders(connection, orderID, updateOrderData);
 				updateOrderInOrdersItems(connection, orderID, updateOrderData);
 				isOrderUpdate = true;
-				transaction.commit();
 			}
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+		} 
 		return isOrderUpdate;
 	}
 	
@@ -297,6 +234,7 @@ public class OrderDAOImpl implements OrderDAO {
 	private int updateOrderInOrdersItems(Connection connection, int orderID, Order updateOrderData) throws SQLException {
 		int rowsUpdated = 0;
 		if(updateOrderData.getItems().size() > 0) {			
+			connection.setAutoCommit(false);
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_ORDER_IN_ORDERS_ITEMS);
 			for(Item item : updateOrderData.getItems()) {
 				preparedStatement.setInt(1, item.getId());
@@ -304,6 +242,8 @@ public class OrderDAOImpl implements OrderDAO {
 				preparedStatement.addBatch();
 			}
 			int[] arrUpdatedRows = preparedStatement.executeBatch();
+			connection.commit();
+			connection.setAutoCommit(true);
 			rowsUpdated = Arrays.stream(arrUpdatedRows).reduce(Integer::sum).getAsInt();
 		}
 		return rowsUpdated;
@@ -312,22 +252,13 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public boolean createOrderOfClient(int clientID, Order order) {
 		boolean isOrderCreated = false;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);			
-			transaction.begin();
 			createOrderInOrders(connection, order);
 			createOrderInOrdersItems(connection, clientID, order);
 			isOrderCreated = true;
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+		} 
 		return isOrderCreated;
 	}
 	
@@ -339,6 +270,7 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	private int createOrderInOrdersItems(Connection connection, int clientID, Order order) throws SQLException {
+		connection.setAutoCommit(false);
 		PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ORDER_ITEMS_IN_ORDERS_ITEMS);
 		for(Item item : order.getItems()) {
 			preparedStatement.setInt(1, order.getId());
@@ -346,6 +278,8 @@ public class OrderDAOImpl implements OrderDAO {
 			preparedStatement.addBatch();
 		}
 		int[] arrCreatedRows = preparedStatement.executeBatch();
+		connection.commit();
+		connection.setAutoCommit(true);
 		int createdRows = Arrays.stream(arrCreatedRows).reduce(Integer::sum).getAsInt();
 		return createdRows;
 	}

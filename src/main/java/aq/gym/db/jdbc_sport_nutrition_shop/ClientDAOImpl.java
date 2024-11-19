@@ -24,31 +24,25 @@ public class ClientDAOImpl implements ClientDAO {
 	@Override
 	public int createClients(List<Client> clients) {
 		int rowsInserted = 0;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			rowsInserted = createClients(clients, connection);
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
 		}
 		return rowsInserted;
 	}
 	
 	private int createClients(List<Client> clients, Connection connection) throws SQLException {
 		int rowsInserted = 0;
+		connection.setAutoCommit(false);
 		PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_CLIENT);
 		for(Client client : clients) {
 			preparedStatement.setString(1, client.getName());
 			preparedStatement.addBatch();
 		}
 		int[] inserted = preparedStatement.executeBatch();
+		connection.commit();
+		connection.setAutoCommit(true);
 		rowsInserted = Arrays.stream(inserted).reduce(0, Integer::sum);
 		return rowsInserted;
 	}
@@ -56,20 +50,11 @@ public class ClientDAOImpl implements ClientDAO {
 	@Override
 	public boolean createClient(Client client) {
 		boolean isClientCreate = false;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			createClient(connection, client);
 			isClientCreate = true;
-			transaction.commit();
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
 		}
 		return isClientCreate;
 	}
@@ -84,25 +69,16 @@ public class ClientDAOImpl implements ClientDAO {
 	@Override
 	public List<Client> readClients(OrderDAO orderDAO) {
 		List<Client> clients = new ArrayList<Client>();
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
-			readClients(connection, orderDAO, clients);
+			readClients(connection, clients);
 			setOrdersClients(orderDAO, clients);
-			transaction.commit();
 		} catch(SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+		} 
 		return clients;
 	}
 
-	private void readClients(Connection connection, OrderDAO orderDAO, List<Client> clients) throws SQLException {
+	private void readClients(Connection connection, List<Client> clients) throws SQLException {
 		List<Client> readClientsDB = new ArrayList<Client>();
 		PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_CLIENTS);
 		ResultSet resultSet = preparedStatement.executeQuery();
@@ -125,23 +101,14 @@ public class ClientDAOImpl implements ClientDAO {
 	@Override
 	public Optional<Client> readClient(int clientID, OrderDAO orderDAO) {
 		Client client = null;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			if(isClientExist(connection, clientID)) {				
 				client = readClient(connection, clientID);
 				setOrdersClient(client, orderDAO);
-				transaction.commit();
 			}
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+		} 
 		return Optional.ofNullable(client);
 	}
 
@@ -166,23 +133,14 @@ public class ClientDAOImpl implements ClientDAO {
 	@Override
 	public boolean updateClient(int clientID, Client updateClientData) {
 		boolean isClientUpdate = false;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			if(isClientExist(connection, clientID)) {				
 				updateClient(connection, clientID, updateClientData);
 				isClientUpdate = true;
-				transaction.commit();
 			}
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+		} 
 		return isClientUpdate;
 	}
 	
@@ -196,23 +154,14 @@ public class ClientDAOImpl implements ClientDAO {
 	@Override
 	public boolean deleteClient(int clientID, OrderDAO orderDAO) {
 		boolean isClientDelete = false;
-		Transaction transaction = null;
 		try (Connection connection = ConnectionManager.getConnection()) {
-			transaction = Transaction.getInstance(connection);
-			transaction.begin();
 			if(isClientExist(connection, clientID)) {				
 				deleteClient(null, clientID, orderDAO);
 				isClientDelete = true;
-				transaction.commit();
 			}
 		} catch (SQLException e) {
-			if(transaction != null)
-				transaction.rollback();
 			e.printStackTrace();
-		} finally {
-			if(transaction != null)
-				transaction.end();
-		}
+		} 
 		return isClientDelete;
 	}
 	
