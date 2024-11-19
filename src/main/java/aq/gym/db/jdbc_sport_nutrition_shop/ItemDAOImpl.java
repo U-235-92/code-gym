@@ -127,7 +127,7 @@ public class ItemDAOImpl implements ItemDAO {
 		int[] arrInsertedRows = preparedStatement.executeBatch();
 		connection.commit();
 		connection.setAutoCommit(true);
-		rowsInserted = Arrays.stream(arrInsertedRows).reduce(Integer::sum).getAsInt();
+		rowsInserted = (arrInsertedRows.length > 0) ? Arrays.stream(arrInsertedRows).reduce(Integer::sum).getAsInt() : 0;
 		return rowsInserted;
 	}
 

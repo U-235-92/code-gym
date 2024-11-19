@@ -40,10 +40,10 @@ public class ClientDAOImpl implements ClientDAO {
 			preparedStatement.setString(1, client.getName());
 			preparedStatement.addBatch();
 		}
-		int[] inserted = preparedStatement.executeBatch();
+		int[] arrInsertedRows = preparedStatement.executeBatch();
 		connection.commit();
 		connection.setAutoCommit(true);
-		rowsInserted = Arrays.stream(inserted).reduce(0, Integer::sum);
+		rowsInserted = (arrInsertedRows.length > 0) ? Arrays.stream(arrInsertedRows).reduce(0, Integer::sum) : 0;
 		return rowsInserted;
 	}
 

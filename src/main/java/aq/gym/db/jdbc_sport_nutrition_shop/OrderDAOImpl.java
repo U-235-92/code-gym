@@ -244,7 +244,7 @@ public class OrderDAOImpl implements OrderDAO {
 			int[] arrUpdatedRows = preparedStatement.executeBatch();
 			connection.commit();
 			connection.setAutoCommit(true);
-			rowsUpdated = Arrays.stream(arrUpdatedRows).reduce(Integer::sum).getAsInt();
+			rowsUpdated = (arrUpdatedRows.length > 0) ? Arrays.stream(arrUpdatedRows).reduce(Integer::sum).getAsInt() : 0;
 		}
 		return rowsUpdated;
 	}
@@ -280,7 +280,7 @@ public class OrderDAOImpl implements OrderDAO {
 		int[] arrCreatedRows = preparedStatement.executeBatch();
 		connection.commit();
 		connection.setAutoCommit(true);
-		int createdRows = Arrays.stream(arrCreatedRows).reduce(Integer::sum).getAsInt();
+		int createdRows = (arrCreatedRows.length > 0) ? Arrays.stream(arrCreatedRows).reduce(Integer::sum).getAsInt() : 0;
 		return createdRows;
 	}
 }
