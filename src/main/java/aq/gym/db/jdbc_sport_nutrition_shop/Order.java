@@ -37,7 +37,7 @@ public class Order extends Entity {
 	}
 	
 	public void addItems(List<Item> items) {
-		items.addAll(items);
+		this.items.addAll(items);
 	}
 	
 	public void addItem(Item item) {

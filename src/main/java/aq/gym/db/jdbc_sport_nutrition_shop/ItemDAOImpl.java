@@ -19,8 +19,8 @@ public class ItemDAOImpl implements ItemDAO {
 	private static final String SQL_SELECT_ITEM_BY_ID = "SELECT * FROM items WHERE id = ?";
 	private static final String SQL_SELECT_ITEM_BY_NAME = "SELECT * FROM items WHERE name = ?";
 	private static final String SQL_DELETE_ITEM_BY_ID = "DELETE FROM items WHERE id = ?";
-	private static final String SQL_CREATE_ITEM = "INSERT INTO items(name, amount) VALUES (?, ?)";
-	private static final String SQL_UPDATE_ITEM_BY_ID = "UPDATE items SET name = ?, amount = ? WHERE id = ?";
+	private static final String SQL_CREATE_ITEM = "INSERT INTO items(name) VALUES (?)";
+	private static final String SQL_UPDATE_ITEM_BY_ID = "UPDATE items SET name = ? WHERE id = ?";
 	private static final String SQL_UPDATE_ITEM_BY_NAME = "UPDATE items SET amount = ? WHERE name = ?"; //names are unique
 
 	@Override
@@ -39,9 +39,8 @@ public class ItemDAOImpl implements ItemDAO {
 		ResultSet resultSet = preparedStatement.executeQuery();
 		while(resultSet.next()) {
 			int id = resultSet.getInt("id");
-			int amount = resultSet.getInt("amount");
 			String name = resultSet.getString("name");
-			Item item = new Item(id, name, amount);
+			Item item = new Item(id, name);
 			items.add(item);
 		}
 	}
@@ -75,8 +74,7 @@ public class ItemDAOImpl implements ItemDAO {
 		ResultSet resultSet = preparedStatement.executeQuery();
 		if(resultSet.next()) {
 			int id = resultSet.getInt("id");
-			int amount = resultSet.getInt("amount");
-			item = new Item(id, itemName, amount);
+			item = new Item(id, itemName);
 		}
 		return item;
 	}
@@ -98,7 +96,6 @@ public class ItemDAOImpl implements ItemDAO {
 	private void createItem(Connection connection, Item item) throws SQLException {
 		PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ITEM);
 		preparedStatement.setString(1, item.getName());
-		preparedStatement.setInt(2, item.getAmount());
 		preparedStatement.executeUpdate();
 	}
 	
@@ -120,7 +117,6 @@ public class ItemDAOImpl implements ItemDAO {
 		for(Item item : items) {
 			if(!isItemExist(connection, item)) {					
 				preparedStatement.setString(1, item.getName());
-				preparedStatement.setInt(2, item.getAmount());
 				preparedStatement.addBatch();
 			}
 		}
@@ -168,7 +164,6 @@ public class ItemDAOImpl implements ItemDAO {
 	private void updateItemById(Connection connection, int itemID, Item item) throws SQLException {
 		PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_ITEM_BY_ID);
 		preparedStatement.setString(1, item.getName());
-		preparedStatement.setInt(2, item.getAmount());
 		preparedStatement.executeUpdate();
 	}
 	
@@ -186,8 +181,7 @@ public class ItemDAOImpl implements ItemDAO {
 	
 	private void updateItemByName(Connection connection, String itemName, Item item) throws SQLException {
 		PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_ITEM_BY_NAME);
-		preparedStatement.setInt(1, item.getAmount());
-		preparedStatement.setString(2, item.getName());
+		preparedStatement.setString(1, item.getName());
 		preparedStatement.executeUpdate();
 	}
 	
@@ -214,9 +208,8 @@ public class ItemDAOImpl implements ItemDAO {
 		ResultSet resultSet = preparedStatement.executeQuery();
 		if(resultSet.next()) {
 			int id = resultSet.getInt("id");
-			int amount = resultSet.getInt("amount");
 			String name = resultSet.getString("name");
-			item = new Item(id, name, amount);
+			item = new Item(id, name);
 		}
 		return item;
 	}

@@ -11,18 +11,14 @@ public class Item extends Entity {
 
 	@Getter @Setter
 	private String name;
-	@Getter @Setter
-	private int amount;
 	
-	public Item(String name, int amount) {
+	public Item(String name) {
 		super();
 		this.name = name;
-		this.amount = amount;
 	}
 	
-	public Item(int id, String name, int amount) {
+	public Item(int id, String name) {
 		super(id);
 		this.name = name;
-		this.amount = amount;
 	}
 }
