@@ -3,9 +3,10 @@ package aq.gym.db.jdbc_sport_nutrition_shop;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE, staticName = "getInstance")
 public class Transaction {
 
 	private Connection connection;

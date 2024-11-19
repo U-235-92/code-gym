@@ -5,10 +5,10 @@ import java.util.Optional;
 
 public interface ItemDAO extends AbstractDAO<Item> {
 
-	public List<Item> readAllItems();
+	public List<Item> readItems();
 	public Optional<Item> readItemById(int itemID);
 	public Optional<Item> readItemByName(String itemName);
-	public int createItem(Item item);
+	public boolean createItem(Item item);
 	public int createItems(List<Item> items);
 	public boolean deleteItemById(int itemID);
 	public boolean updateItemById(int itemID, Item item);

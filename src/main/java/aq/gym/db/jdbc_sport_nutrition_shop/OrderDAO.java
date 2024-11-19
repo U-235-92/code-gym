@@ -11,6 +11,6 @@ public interface OrderDAO extends AbstractDAO<Order> {
 	public boolean deleteOrder(int orderID);
 	public boolean deleteOrderOfClient(int clientID, int orderID);
 	public boolean deleteOrdersOfClient(int clientID);
-	public int[] updateOrder(int orderID, Order updateOrderData);
-	public int createOrderOfClient(int clientID, Order order);
+	public boolean updateOrder(int orderID, Order updateOrderData);
+	public boolean createOrderOfClient(int clientID, Order order);
 }

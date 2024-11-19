@@ -1,6 +1,5 @@
 package aq.gym.db.jdbc_sport_nutrition_shop;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,18 +8,13 @@ public class Main {
 	@SuppressWarnings("unused")
 	public static void main(String[] args)  {
 		Main main = new Main();
-		try(Connection connection = ConnectionManager.getConnection()) {
-			Transaction transaction = new Transaction(connection);
-			ClientDAO clientDAO = new ClientDAOImpl(connection, transaction);
-			OrderDAO orderDAO = new OrderDAOImpl(connection, transaction);
-			ItemDAO itemDAO = new ItemDAOImpl(connection, transaction);
-//			main.addClients();
-//			main.createItems(itemDAO);
-			List<Client> clients = main.readAllClients(clientDAO, orderDAO);
-			System.out.println(clients);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
+		ClientDAO clientDAO = ClientDAOImpl.getInstance();
+		OrderDAO orderDAO = OrderDAOImpl.getInstance();
+		ItemDAO itemDAO = ItemDAOImpl.getInstance();
+//		main.addClients();
+//		main.createItems(itemDAO);
+		List<Client> clients = main.readAllClients(clientDAO, orderDAO);
+		System.out.println(clients);
 	}
 	
 	@SuppressWarnings("unused")

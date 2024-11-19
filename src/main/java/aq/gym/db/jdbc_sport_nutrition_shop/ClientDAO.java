@@ -6,7 +6,7 @@ import java.util.Optional;
 public interface ClientDAO extends AbstractDAO<Client> {
 
 	public int createClients(List<Client> clients);
-	public int createClient(Client client);
+	public boolean createClient(Client client);
 	public List<Client> readClients(OrderDAO orderDAO);
 	public Optional<Client> readClient(int clientID, OrderDAO orderDAO);
 	public boolean updateClient(int clientID, Client updateClientData);
