@@ -26,7 +26,7 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public List<Item> readItems() {
 		List<Item> items = new ArrayList<Item>();
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			readItems(connection, items);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -48,7 +48,7 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public Optional<Item> readItemById(int itemID) {
 		Item item = null;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			item = readItemById(connection, itemID);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -59,7 +59,7 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public Optional<Item> readItemByName(String itemName) {
 		Item item = null;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			item = readItemByName(connection, itemName);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,7 +82,7 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public boolean createItem(Item item) {
 		boolean isItemCreate = false;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			if(!isItemExist(connection, item)) {						
 				createItem(connection, item);
 				isItemCreate = true;
@@ -102,7 +102,7 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public int createItems(List<Item> items) {
 		int rowsInserted = 0;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			rowsInserted = createItems(connection, items);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -130,7 +130,7 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public boolean deleteItemById(int itemID) {
 		boolean isItemDeleted = false;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			if(isItemExistById(connection, itemID)) {
 				deleteItemById(connection, itemID);
 				isItemDeleted = true;
@@ -150,7 +150,7 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public boolean updateItemById(int itemID, Item item) {
 		boolean isItemUpdated = false;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			if(isItemExistById(connection, itemID)) {
 				updateItemById(connection, itemID, item);
 				isItemUpdated = true;
@@ -170,7 +170,7 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public boolean updateItemByName(String itemName, Item item) {
 		boolean isItemUpdated = false;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			updateItemByName(connection, itemName, item);
 			isItemUpdated = true;
 		} catch (SQLException e) {

@@ -37,7 +37,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public List<Order> readOrders() {
 		List<Order> orders = new ArrayList<Order>();
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			readOrders(connection, orders);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -63,7 +63,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public List<Order> readOrdersOfClient(int clientID) {
 		List<Order> orders = new ArrayList<Order>();
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			readOrdersOfClient(connection, clientID, orders);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -90,7 +90,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public Optional<Order> readOrder(int orderID) {
 		Order order = null;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			order = readOrder(connection, orderID);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,7 +131,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public boolean deleteOrderOfClient(int clientID, int orderID) {
 		boolean isOrderDeleted = false;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			if(isOrderExist(connection, orderID)) {				
 				deleteItemsFromOrdersItems(connection, orderID);
 				deleteOrderFromOrdersClients(connection, clientID, orderID);
@@ -147,7 +147,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public boolean deleteOrdersOfClient(int clientID) {
 		boolean isOrderDeleted = false;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			List<Order> orders = readOrdersOfClient(clientID);
 			for(Order order : orders) {
 				int orderID = order.getId();
@@ -167,7 +167,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public boolean deleteOrder(int orderID) {
 		boolean isOrderDeleted = false;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			if(isOrderExist(connection, orderID)) {				
 				deleteItemsFromOrdersItems(connection, orderID);
 				deleteOrderFromOrdersClients(connection, orderID);
@@ -217,7 +217,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public boolean updateOrder(int orderID, Order updateOrderData) {
 		boolean isOrderUpdate = false;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			if(isOrderExist(connection, orderID)) {				
 				updateOrderInOrders(connection, orderID, updateOrderData);
 				updateOrderInOrdersItems(connection, orderID, updateOrderData);
@@ -259,7 +259,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public boolean createOrderOfClient(int clientID, Order order) {
 		boolean isOrderCreated = false;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			int generatedOrderID = createOrderInOrders(connection, order);
 			createOrderInOrdersClients(connection, clientID, generatedOrderID);
 			createOrderInOrdersItems(connection, clientID, generatedOrderID, order);

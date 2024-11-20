@@ -24,7 +24,7 @@ public class ClientDAOImpl implements ClientDAO {
 	@Override
 	public int createClients(List<Client> clients) {
 		int rowsInserted = 0;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			rowsInserted = createClients(clients, connection);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,7 +50,7 @@ public class ClientDAOImpl implements ClientDAO {
 	@Override
 	public boolean createClient(Client client) {
 		boolean isClientCreate = false;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			createClient(connection, client);
 			isClientCreate = true;
 		} catch (SQLException e) {
@@ -69,7 +69,7 @@ public class ClientDAOImpl implements ClientDAO {
 	@Override
 	public List<Client> readClients(OrderDAO orderDAO) {
 		List<Client> clients = new ArrayList<Client>();
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			readClients(connection, clients);
 			setOrdersClients(orderDAO, clients);
 		} catch(SQLException e) {
@@ -101,7 +101,7 @@ public class ClientDAOImpl implements ClientDAO {
 	@Override
 	public Optional<Client> readClient(int clientID, OrderDAO orderDAO) {
 		Client client = null;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			if(isClientExist(connection, clientID)) {				
 				client = readClient(connection, clientID);
 				setOrdersClient(client, orderDAO);
@@ -133,7 +133,7 @@ public class ClientDAOImpl implements ClientDAO {
 	@Override
 	public boolean updateClient(int clientID, Client updateClientData) {
 		boolean isClientUpdate = false;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			if(isClientExist(connection, clientID)) {				
 				updateClient(connection, clientID, updateClientData);
 				isClientUpdate = true;
@@ -154,7 +154,7 @@ public class ClientDAOImpl implements ClientDAO {
 	@Override
 	public boolean deleteClient(int clientID, OrderDAO orderDAO) {
 		boolean isClientDelete = false;
-		try (Connection connection = ConnectionManager.getConnection()) {
+		try (Connection connection = ConnectionManager.getPooledConnection()) {
 			if(isClientExist(connection, clientID)) {				
 				deleteClient(null, clientID, orderDAO);
 				isClientDelete = true;
