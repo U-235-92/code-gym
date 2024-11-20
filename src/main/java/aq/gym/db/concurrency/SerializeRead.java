@@ -1,4 +1,4 @@
-package aq.gym.jdbc.concurrency;
+package aq.gym.db.concurrency;
 
 public class SerializeRead {
 
