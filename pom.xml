@@ -6,8 +6,7 @@
 	<artifactId>code-gym</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven.compiler.source>1.8</maven.compiler.source>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
@@ -72,4 +71,22 @@
 		</dependency>
 
 	</dependencies>
+	<build>
+		<plugins>
+			<!--https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin--> 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<!--<includes>
+						<include>aq/qym/test/db/orm_sport_nutrition/*.java</include>
+					</includes>-->
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
 </project>

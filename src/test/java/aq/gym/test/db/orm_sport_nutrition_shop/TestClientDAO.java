@@ -22,16 +22,6 @@ class TestClientDAO {
 	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 	private static ClientDAO clientDAO = new ClientDAO(entityManager);;
 	
-//	@BeforeAll
-//	public static void initEntityManager() {
-//		entityManager = entityManagerFactory.createEntityManager();
-//	}
-	
-//	@BeforeAll
-//	public static void initClientDAO() {
-//		clientDAO = new ClientDAO(entityManager);
-//	}
-	
 	@Test
 	public void shouldAddClients() {
 		List<Client> insertedClients = List.of(new Client("Alice"), new Client("Bob"), new Client("Sarah"));

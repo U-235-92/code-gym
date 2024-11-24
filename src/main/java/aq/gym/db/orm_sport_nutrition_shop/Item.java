@@ -2,11 +2,13 @@ package aq.gym.db.orm_sport_nutrition_shop;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @ToString
 @Entity
