@@ -4,10 +4,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString
-public class Item extends Entity {
+@Entity
+@Table(name = "items")
+public class Item extends aq.gym.db.orm_sport_nutrition_shop.Entity {
 
 	@Getter @Setter
 	private String name;

@@ -8,17 +8,21 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString
-public class Order extends Entity {
+@Entity
+public class Order extends aq.gym.db.orm_sport_nutrition_shop.Entity {
 
-	@Getter
-	@Setter
+	@Getter @Setter
 	private LocalDateTime date;
-	@Getter
-	@Setter
+	@Getter @Setter
 	private String comment;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<Item> items;
 
 	public Order(int id, LocalDateTime date, String comment) {

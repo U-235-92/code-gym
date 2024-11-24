@@ -6,13 +6,23 @@ import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString
-public class Client extends Entity {
+@Entity
+@Table(name = "clients")
+public class Client extends aq.gym.db.orm_sport_nutrition_shop.Entity {
 
 	@Getter
 	private String name;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "client_fk")
 	private List<Order> orders;
 
 	public Client(String name) {
