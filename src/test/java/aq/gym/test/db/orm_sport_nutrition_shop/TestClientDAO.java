@@ -19,29 +19,30 @@ import jakarta.persistence.Persistence;
 class TestClientDAO {
 
 	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("aq.db.orm_sport_nutrition_shop");
-	private static EntityManager entityManager;
-	private static ClientDAO clientDAO;
+	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
+	private static ClientDAO clientDAO = new ClientDAO(entityManager);;
 	
-	@BeforeAll
-	public static void initEntityManager() {
-		entityManager = entityManagerFactory.createEntityManager();
-	}
+//	@BeforeAll
+//	public static void initEntityManager() {
+//		entityManager = entityManagerFactory.createEntityManager();
+//	}
 	
-	@BeforeAll
-	public static void initClientDAO() {
-		clientDAO = new ClientDAO(entityManager);
-	}
+//	@BeforeAll
+//	public static void initClientDAO() {
+//		clientDAO = new ClientDAO(entityManager);
+//	}
 	
 	@Test
-	public static void shouldAddClients() {
+	public void shouldAddClients() {
 		List<Client> insertedClients = List.of(new Client("Alice"), new Client("Bob"), new Client("Sarah"));
 		clientDAO.addClients(insertedClients);
 		List<Client> readedClients = clientDAO.getClients();
+		System.out.println(readedClients);
 		assertNotNull(readedClients);
 	}
 	
 	@AfterAll
-	public void closeEntityManager() {
+	public static void closeEntityManager() {
 		if(entityManager != null) 
 			entityManager.close();
 	}

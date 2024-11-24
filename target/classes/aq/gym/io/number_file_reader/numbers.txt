@@ -1,2 +1,0 @@
-1.22 5.45 number 7.62 8 10
-555.888 another_no_number
