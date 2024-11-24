@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -13,16 +14,22 @@ import lombok.RequiredArgsConstructor;
 public class ClientDAO {
 
 	@NonNull
-	private EntityManagerFactory entityManagerFactory;
+	private EntityManager entityManager;
 	
 	public void addClients(List<Client> clients) {
-		try(EntityManager entityManager = entityManagerFactory.createEntityManager()) {			
-			EntityTransaction transaction = entityManager.getTransaction();
-			transaction.begin();
-			clients.forEach(entityManager::persist);
-			transaction.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		clients.forEach(entityManager::persist);
+		transaction.commit();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Client> getClients() {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		Query query = entityManager.createQuery("SELECT c FROM Client c", Client.class);
+		List<Client> clients = query.getResultList();
+		transaction.commit();
+		return clients;
 	}
 }
