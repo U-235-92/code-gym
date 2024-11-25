@@ -19,7 +19,7 @@ class TestClientDAO {
 
 	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("aq.db.orm_sport_nutrition_shop");
 	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
-	private static ClientDAO clientDAO = new ClientDAO(entityManager);;
+	private static ClientDAO clientDAO = new ClientDAO(entityManager);
 	private static List<Client> insertedClients = List.of(new Client("Alice"), new Client("Bob"), new Client("Sarah"));
 	
 	@BeforeAll
