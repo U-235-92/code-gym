@@ -12,12 +12,9 @@ public class Main {
 	public static void main(String[] args) {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("aq.db.orm_sport_nutrition_shop");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
 		ClientDAO clientDAO = new ClientDAO(entityManager);
-		entityTransaction.begin();
 		List<Client> insertedClients = List.of(new Client("Alice"), new Client("Bob"), new Client("Sarah"));
 		clientDAO.createClients(insertedClients);
-		entityTransaction.commit();
 	}
 
 }
