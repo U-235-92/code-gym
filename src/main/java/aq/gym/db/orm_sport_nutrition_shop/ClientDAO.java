@@ -22,6 +22,13 @@ public class ClientDAO {
 		transaction.commit();
 	}
 	
+	public void createClient(Client client) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.persist(client);
+		transaction.commit();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Client> readClients() {
 		EntityTransaction transaction = entityManager.getTransaction();
