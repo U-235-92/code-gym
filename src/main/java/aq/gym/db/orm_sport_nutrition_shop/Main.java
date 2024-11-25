@@ -16,7 +16,7 @@ public class Main {
 		ClientDAO clientDAO = new ClientDAO(entityManager);
 		entityTransaction.begin();
 		List<Client> insertedClients = List.of(new Client("Alice"), new Client("Bob"), new Client("Sarah"));
-		clientDAO.addClients(insertedClients);
+		clientDAO.createClients(insertedClients);
 		entityTransaction.commit();
 	}
 

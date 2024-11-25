@@ -6,9 +6,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import aq.gym.db.orm_sport_nutrition_shop.Client;
 import aq.gym.db.orm_sport_nutrition_shop.ClientDAO;
@@ -21,14 +20,47 @@ class TestClientDAO {
 	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("aq.db.orm_sport_nutrition_shop");
 	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 	private static ClientDAO clientDAO = new ClientDAO(entityManager);;
+	private static List<Client> insertedClients = List.of(new Client("Alice"), new Client("Bob"), new Client("Sarah"));
+	
+	@BeforeAll
+	public static void fillDatabase() {
+		clientDAO.createClients(insertedClients);
+	}
 	
 	@Test
+	@Disabled
 	public void shouldAddClients() {
-		List<Client> insertedClients = List.of(new Client("Alice"), new Client("Bob"), new Client("Sarah"));
-		clientDAO.addClients(insertedClients);
-		List<Client> readedClients = clientDAO.getClients();
-		System.out.println(readedClients);
+		clientDAO.createClients(insertedClients);
+		List<Client> readedClients = clientDAO.readClients();
 		assertNotNull(readedClients);
+	}
+	
+	@Test
+	@Disabled
+	public void shouldGetClientById() {
+		int id = 1;
+		clientDAO.createClients(insertedClients);
+		Client client = clientDAO.readClient(id);
+		assertNotNull(client);
+	}
+	
+	@Test
+	@Disabled
+	public void shouldRenameClient() {
+		int id = 1;
+		String ada = "Ada";
+		Client client = clientDAO.readClient(id);
+		clientDAO.updateClientName(id, ada);
+		client = clientDAO.readClient(id);
+		assertEquals(ada, client.getName());
+	}
+	
+	@Test
+	public void shouldDeleteClient() {
+		int id = 1;
+		clientDAO.deleteClient(id);
+		Client client = clientDAO.readClient(id);
+		assertNull(client);
 	}
 	
 	@AfterAll

@@ -13,11 +13,13 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @ToString
 @Entity
+@Table(name = "orders")
 public class Order extends aq.gym.db.orm_sport_nutrition_shop.Entity {
 
 	@Getter @Setter
