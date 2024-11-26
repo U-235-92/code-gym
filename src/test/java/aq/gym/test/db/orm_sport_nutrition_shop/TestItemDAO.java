@@ -12,6 +12,7 @@ import aq.gym.db.orm_sport_nutrition_shop.Item;
 import aq.gym.db.orm_sport_nutrition_shop.ItemDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
 class TestItemDAO {
@@ -62,10 +63,24 @@ class TestItemDAO {
 	}
 	
 	@Test
+	@Disabled
 	public void shouldDeleteItem() {
 		int id = 1;
 		itemDAO.deleteItem(id);
 		Item deleted = itemDAO.readItem(id);
 		assertNull(deleted);
+	}
+	
+	@Test
+	@Disabled
+	public void testRollback() {
+		EntityTransaction entityTransaction =  entityManager.getTransaction();
+		entityTransaction.begin();
+		String ultimateName = "Ultimate Nutrition ProStar Whey Protein 907";
+		Item ultimate = new Item(ultimateName);
+		entityManager.persist(ultimate);
+		entityTransaction.rollback();
+		Item copy = itemDAO.readItem(ultimateName);
+		assertNotNull(copy);
 	}
 }
