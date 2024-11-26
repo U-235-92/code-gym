@@ -1,9 +1,11 @@
 package aq.gym.db.orm_sport_nutrition_shop;
 
+import java.io.IOException;
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
 public class Main {
@@ -40,6 +42,26 @@ public class Main {
 //			e.printStackTrace();
 //		}
 //		transaction.commit();
+		
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		Client john = new Client("John");
+		entityManager.persist(john);
+		transaction.commit();
+		
+//		entityManager.detach(john);
+		System.out.println("Does context contain " + john + " ??? " + entityManager.contains(john));
+		john.setName("Middle John");
+		transaction.begin();
+		try {
+			System.out.println("Press any key...");
+			System.in.read();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		entityManager.refresh(john);
+//		entityManager.detach(john);
+		transaction.commit();
 	}
 
 }
