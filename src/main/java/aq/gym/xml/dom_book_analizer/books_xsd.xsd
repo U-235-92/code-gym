@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="books" type="booksType" />
+    <xs:element name="book" type="bookType" />
+    <xs:element name="title" type="xs:string" />
+    <xs:element name="author" type="authorType" />
+    <xs:element name="firstname" type="xs:string" />
+    <xs:element name="lastname" type="xs:string" />
+    <xs:attribute name="isbn" type="xs:string" />
+    
+    <!-- Books Type defenintion -->
+    <xs:complexType name="booksType">
+        <xs:sequence>
+            <xs:element ref="book" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Book Type defenintion -->
+    <xs:complexType name="bookType">
+        <xs:sequence>
+            <xs:element ref="title" minOccurs="1" maxOccurs="1" />
+            <xs:element ref="author" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute ref="isbn" use="required" />
+    </xs:complexType>
+    
+    <!-- Author Type defenintion -->
+    <xs:complexType name="authorType">
+        <xs:sequence>
+            <xs:element ref="firstname" minOccurs="1" maxOccurs="1" />
+            <xs:element ref="lastname" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

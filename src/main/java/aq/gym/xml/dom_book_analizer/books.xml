@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="books_xsd.xsd">
+    <book isbn="9785389189768">
+        <title>Вечный Зов</title>
+        <author>
+            <firstname>Анатолий</firstname>
+            <lastname>Иванов</lastname>
+        </author>
+    </book>
+    <book isbn="9785389149885">
+        <title>Спартак</title>
+        <author>
+            <firstname>Рафаэлло</firstname>
+            <lastname>Джованьоли</lastname>
+        </author>
+    </book>
+    <book isbn="9785040307869">
+        <title>Java. Методы программирования</title>
+        <author>
+            <firstname>Игорь</firstname>
+            <lastname>Блинов</lastname>
+        </author>
+        <author>
+            <firstname>Валерий</firstname>
+            <lastname>Романчик</lastname>
+        </author>
+    </book>
+    <book isbn="9785041567132">
+        <title>Джен Эйр</title>
+        <author>
+            <firstname>Шарлотта</firstname>
+            <lastname>Бронте</lastname>
+        </author>
+    </book>
+    <book isbn="9785389013230">
+        <title>Грозовой перевал</title>
+        <author>
+            <firstname>Шарлотта</firstname>
+            <lastname>Бронте</lastname>
+        </author>
+    </book>
+</books>
