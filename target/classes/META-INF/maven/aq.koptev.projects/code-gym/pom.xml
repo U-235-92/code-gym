@@ -69,11 +69,18 @@
 			<version>5.11.3</version>
 			<scope>test</scope>
 		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>4.0.2</version>
+		</dependency>
 
 	</dependencies>
 	<build>
 		<plugins>
-			<!--https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin--> 
+			<!--https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

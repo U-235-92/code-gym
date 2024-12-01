@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persons>
+    <person id="1">
+        <name>Ivan</name>
+        <age>30</age>
+        <country>RUSSIA</country>
+    </person>
+    <person id="2">
+        <name>Bob</name>
+        <age>20</age>
+        <country>USA</country>
+    </person>
+    <person id="3">
+        <name>Erica</name>
+        <age>25</age>
+        <country>GERMANY</country>
+    </person>
+    <person id="4">
+        <name>Vasco</name>
+        <age>44</age>
+        <country>ITALY</country>
+    </person>
+    <person id="5">
+        <name>Mariko</name>
+        <age>22</age>
+        <country>JAPAN</country>
+    </person>
+</persons>
