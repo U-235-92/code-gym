@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="item_xsd.xsd">
+    <item id="i-1">
+        <name>Dymatize Elite 100% Whey Protein 907</name>
+        <characteristic>Chocolate</characteristic>
+        <expiration>2025-12-12</expiration>
+    </item>
+    <item id="i-2">
+        <name>Dymatize Elite 100% Whey Protein 907</name>
+        <characteristic>Strawberry</characteristic>
+        <expiration>2025-12-12</expiration>
+    </item>
+    <item id="i-3">
+        <name>Dymatize Elite 100% Whey Protein 907</name>
+        <characteristic>Vanila</characteristic>
+        <expiration>2025-12-12</expiration>
+    </item>
+    <item id="i-4">
+        <name>Optimum Nutrition 100% Whey Gold Standard 909</name>
+        <characteristic>White Chocolate</characteristic>
+        <expiration>2026-11-22</expiration>
+    </item>
+    <item id="i-5">
+        <name>BSN DNA Whey 838 г</name>
+        <characteristic>Banana</characteristic>
+        <expiration>2027-05-08</expiration>
+    </item>
+    <item id="i-6">
+        <name>Scitec Nutrition 100% Whey Protein Proffessional 920</name>
+        <characteristic>Coconut</characteristic>
+        <expiration>2028-08-05</expiration>
+    </item>
+</items>

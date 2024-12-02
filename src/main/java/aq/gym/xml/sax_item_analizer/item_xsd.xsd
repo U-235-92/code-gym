@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="items" type="itemsType" />
+    <xs:element name="item" type="itemType" />
+    <xs:element name="name" type="xs:string" />
+    <xs:element name="characteristic" type="xs:string" />
+    <xs:element name="expiration" type="xs:date" />
+    <xs:attribute name="id" type="xs:ID" />
+    
+    <!-- Items Type defenintion -->
+    <xs:complexType name="itemsType">
+        <xs:sequence>
+            <xs:element ref="item" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Item Type defenintion -->
+    <xs:complexType name="itemType">
+        <xs:sequence>
+            <xs:element ref="name" />
+            <xs:element ref="characteristic" />
+            <xs:element ref="expiration" />
+        </xs:sequence>
+        <xs:attribute ref="id" />
+    </xs:complexType>
+</xs:schema>
