@@ -1,0 +1,10 @@
+{
+    "number": "m650wo64",
+    "driver": {
+        "id": 100,
+        "name": "Alice"
+    },
+    "owner": {
+        "name": "Bob"
+    }
+}
