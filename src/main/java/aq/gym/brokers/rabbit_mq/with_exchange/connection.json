@@ -1,0 +1,6 @@
+{
+    "host": "localhost",
+    "queues" : ["white_queue", "black_queue"],
+    "routing_keys": ["white_route", "black_route"],
+    "exchange_name": "color_exchange"
+}
