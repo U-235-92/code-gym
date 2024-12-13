@@ -3,7 +3,8 @@ package aq.gym.fun.pyramid;
 public class Main {
 
 	public static void main(String[] args) {
-		Pyramid.draw(5);
+		int pyramidHeight = Integer.valueOf(args[0]);
+		Pyramid.draw(pyramidHeight);
 	}
 
 }
