@@ -1,0 +1,19 @@
+version: "3.1"
+
+volumes:
+  db_mysql_volume:
+
+services:
+ my_gym:
+  build:
+   context: .
+  restart: always
+  depends_on:
+   - my_db_mysql
+ my_db_mysql:
+  image: mysql
+  restart: always
+  volumes:
+   - db_mysql_volume:/data/db
+  environment:
+   MYSQL_ROOT_PASSWORD: root
