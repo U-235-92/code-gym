@@ -5,7 +5,9 @@ public class PrimitiveRecursion {
 	public static void main(String[] args) {
 		System.out.printf("Reverse of %s: " + reverseString("ABCDEF") + "%n", "ABCDEF");
 		System.out.printf("Fctorial of %d: " + factorial(4) + "%n", 4); 
-		System.out.printf("Fibonacci to limit %d: " + fibonacci(4), 4); 
+		System.out.printf("Fibonacci to limit %d: " + fibonacci(4) + "%n", 4);
+		System.out.print("Recursive numbers from 1 to 10: ");
+		printNumbers(10);
 	}
 	
 	private static String reverseString(String string) {
@@ -34,5 +36,12 @@ public class PrimitiveRecursion {
 			return limit;
 		}
 		return fibonacci(limit - 2) + fibonacci(limit - 1);
+	}
+	
+	private static void printNumbers(int limit) {
+		if(limit != 1) {
+			printNumbers(limit - 1);
+		}
+		System.out.print(limit + " ");
 	}
 }
