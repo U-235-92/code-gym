@@ -14,7 +14,8 @@ public class FirstNumberInString {
 	
 	private static Optional<String> find(String string) {
 		return Arrays.stream(string.split(" "))
-				.filter(letter -> letter.matches("[0-9]+"))
+				.filter(letter -> letter.matches("[0-9]+.*"))
+				.map(letter -> letter.split("[a-zA-Z,:;!?]+")[0])
 				.findFirst();
 	}
 }
