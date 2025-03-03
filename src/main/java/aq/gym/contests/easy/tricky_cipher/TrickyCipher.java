@@ -1,4 +1,4 @@
-package aq.gym.contests.tricky_cipher;
+package aq.gym.contests.easy.tricky_cipher;
 
 import java.io.BufferedReader;
 import java.io.File;

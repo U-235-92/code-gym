@@ -1,4 +1,4 @@
-package aq.gym.contests.rocket_taxi_stat;
+package aq.gym.contests.easy.rocket_taxi_stat;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

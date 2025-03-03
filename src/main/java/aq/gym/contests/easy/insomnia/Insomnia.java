@@ -1,4 +1,4 @@
-package aq.gym.contests.insomnia;
+package aq.gym.contests.easy.insomnia;
 
 import java.io.BufferedReader;
 import java.io.IOException;
