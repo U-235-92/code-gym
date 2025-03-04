@@ -1,4 +1,4 @@
-package aq.gym.contests.easy.greate_neighbour;
+package aq.gym.contests.easy;
 
 import java.util.Arrays;
 import java.util.Scanner;

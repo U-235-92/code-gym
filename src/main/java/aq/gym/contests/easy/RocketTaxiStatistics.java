@@ -1,4 +1,4 @@
-package aq.gym.contests.easy.rocket_taxi_stat;
+package aq.gym.contests.easy;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -23,7 +23,7 @@ public class RocketTaxiStatistics {
 	private static String getStatistics() {
 		int n = 0;
 		String[] stats = null;
-		try(BufferedReader br = new BufferedReader(new FileReader(new File("src/main/java/aq/gym/contests/rocket_taxi_stat/input.txt")))) {
+		try(BufferedReader br = new BufferedReader(new FileReader(new File("src/main/java/aq/gym/contests/easy/rocket_taxi_stat_input.txt")))) {
 			n = Integer.valueOf(br.readLine());
 			String line = null;
 			int i = 0;

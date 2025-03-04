@@ -1,4 +1,4 @@
-package aq.gym.contests.easy.open_calculator;
+package aq.gym.contests.easy;
 
 import java.util.Arrays;
 import java.util.HashSet;

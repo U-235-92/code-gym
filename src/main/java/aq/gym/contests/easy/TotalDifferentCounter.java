@@ -1,4 +1,4 @@
-package aq.gym.contests.easy.total_dif_word_counter;
+package aq.gym.contests.easy;
 
 import java.util.Arrays;
 import java.util.HashSet;

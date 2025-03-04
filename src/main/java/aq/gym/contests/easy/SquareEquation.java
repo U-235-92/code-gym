@@ -1,4 +1,4 @@
-package aq.gym.contests.easy.square_equation;
+package aq.gym.contests.easy;
 
 import java.util.Arrays;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package aq.gym.contests.easy.insomnia;
+package aq.gym.contests.easy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +9,22 @@ import java.util.Queue;
 
 public class Insomnia {
 
+//	Inputs:
+//	
+//	2 2 2 2
+//	X000
+//	XX00
+//	X000
+//	000X
+//
+//	3 1 2 1
+//	0
+//	0
+//	X
+//	X
+//	0
+//	X
+	
 	public static void main(String[] args) {
 		try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
 			int insomnia = 0;

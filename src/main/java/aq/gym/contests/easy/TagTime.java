@@ -1,4 +1,4 @@
-package aq.gym.contests.easy.tag_set_time;
+package aq.gym.contests.easy;
 
 import java.util.Scanner;
 

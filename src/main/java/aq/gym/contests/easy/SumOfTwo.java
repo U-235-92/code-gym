@@ -1,4 +1,4 @@
-package aq.gym.contests.easy.sum_of_two;
+package aq.gym.contests.easy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
