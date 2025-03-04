@@ -33,8 +33,7 @@ public class Insomnia {
 			Queue<String> windowLines = loadWindowLines(bufferedReader, buildingData);
 			int height = getNumberOfWindowsInFlatInHeight(buildingData);
 			int width = getNumberOfWindowsInFlatInWidth(buildingData);
-			int floors = getNumberOfFloors(buildingData);
-			insomnia = getInsomniaCount(windowLines, width, height, floors);
+			insomnia = getInsomniaCount(windowLines, width, height);
 			System.out.println(insomnia);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -84,15 +83,17 @@ public class Insomnia {
 		return buildingData[3];
 	}
 	
-	private static int getInsomniaCount(Queue<String> windowLines, int width, int height, int floors) {
+	private static int getInsomniaCount(Queue<String> windowLines, int width, int height) {
 		int insomnia = 0;
 		String flatLine = "";
-		int start = 0, end = width;
-		while(floors > 0) {
+		int start = 0, end = width, countLines = windowLines.size();
+		while(countLines > 0 && windowLines.size() > 0) {
 			String floorLine = windowLines.remove();
 			flatLine += floorLine.substring(start, end);
 			String remain = floorLine.substring(end);
-			windowLines.add(remain);
+			if(remain != "") {				
+				windowLines.add(remain);
+			}
 			if(flatLine.length() == height * width) {
 				int n = Arrays.stream(flatLine.split("")).filter(s -> s.equals("X")).mapToInt(s -> 1).sum();
 				double condition = (height * width) / 2.0;
@@ -100,7 +101,7 @@ public class Insomnia {
 					insomnia++;
 				}
 				flatLine = "";
-				floors--;
+				countLines--;
 			}
 		}
 		return insomnia;
