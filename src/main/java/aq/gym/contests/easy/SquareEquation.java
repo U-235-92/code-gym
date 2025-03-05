@@ -7,8 +7,8 @@ public class SquareEquation {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		long nums[] = Arrays.stream(scanner.nextLine().split("\\s")).mapToLong(Long::valueOf).toArray();
-		long a = nums[0], b = nums[1], c = nums[2];
+		double nums[] = Arrays.stream(scanner.nextLine().split("\\s")).mapToDouble(Double::valueOf).toArray();
+		double a = nums[0], b = nums[1], c = nums[2];
 		if(a != 0) {
 			double d = b*b - 4*a*c;
 			if(d == 0) {
