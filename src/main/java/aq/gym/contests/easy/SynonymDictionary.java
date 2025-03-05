@@ -8,10 +8,11 @@ import java.util.Scanner;
 public class SynonymDictionary {
 
 	public static void main(String[] args) {
-		betterSpeed();
+		findSynonymByMapAndParallelStream();
 	}
 	
-	private static void betterSpeed() {
+//	The fastest calculation 
+	private static void findSynonymByMapAndParallelStream() {
 		Scanner scanner = new Scanner(System.in);
 		int n = Integer.valueOf(scanner.nextLine());
 		Map<String, String> map1 = new HashMap<>();
@@ -29,6 +30,7 @@ public class SynonymDictionary {
 		scanner.close();
 	}
 	
+	@SuppressWarnings("unused")
 	private static void findSynonymByArray() {
 		Scanner scanner = new Scanner(System.in);
 		int n = Integer.valueOf(scanner.nextLine()), i = 0;
@@ -51,6 +53,7 @@ public class SynonymDictionary {
 		scanner.close();
 	}
 	
+	@SuppressWarnings("unused")
 	private static void findSynonymByMap() {
 		Scanner scanner = new Scanner(System.in);
 		int n = Integer.valueOf(scanner.nextLine());
