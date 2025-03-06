@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -39,45 +39,18 @@ public class GraphTraversal {
 
 	public static void main(String[] args) {
 		try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-			Map<Node, List<Node>> graph = new HashMap<>();
 			int[] graphMetaData = Arrays.stream(reader.readLine().split("\\s")).mapToInt(Integer::valueOf).toArray();
 			int n = graphMetaData[0];
 			int m = graphMetaData[1];
+			Map<Node, Set<Node>> graph = new HashMap<>(n);
 			Node start = null;
 			while(m-- > 0) {
 				int[] nodeData = Arrays.stream(reader.readLine().split("\\s")).mapToInt(Integer::valueOf).toArray();
 				Node node1 = new Node(nodeData[0]);
-				Node node2 = null;
+				Node node2 = new Node(nodeData[1]);
+				addNodesInGraph(graph, node1, node2);
 				if(start == null) {
 					start = node1;
-				}
-				if(nodeData[1] == nodeData[0]) {
-					graph.compute(node1, (k, v) -> {
-						if(v == null) {
-							List<Node> neighbours = new ArrayList<>();
-							neighbours.add(node1);
-							return neighbours;
-						} else {
-							v.add(node1);
-							return v;
-						}
-					});
-				} else {
-					node2 = new Node(nodeData[1]);
-					if(graph.get(node1) == null) {
-						List<Node> neighbours = new ArrayList<>();
-						neighbours.add(node2);
-						graph.put(node1, neighbours);
-					} else {
-						graph.get(node1).add(node2);
-					}
-					if(graph.get(node2) == null) {
-						List<Node> neighbours = new ArrayList<>();
-						neighbours.add(node1);
-						graph.put(node2, neighbours);
-					} else {
-						graph.get(node2).add(node1);
-					}
 				}
 			}
 			travel(graph, start);
@@ -86,26 +59,59 @@ public class GraphTraversal {
 		}
 	}
 	
-	private static void travel(Map<Node, List<Node>> graph, Node start) {
-		List<Node> neighbours = graph.get(start);
-		Queue<Node> notVisitedNodes = new LinkedList<>();
-		notVisitedNodes.addAll(neighbours);
-		List<Node> visitedNodes = new ArrayList<>();
-		start.setVisited(true);
-		visitedNodes.add(start);
-		while(notVisitedNodes.size() > 0) {
-			Node node = notVisitedNodes.remove();
-			if(!node.isVisited()) {
+	private static void addNodesInGraph(Map<Node, Set<Node>> graph, Node node1, Node node2) {
+		if(node1.getValue() == node2.getValue()) {
+			graph.compute(node1, (k, v) -> {
+				if(v == null) {
+					Set<Node> neighbours = new HashSet<>();
+					neighbours.add(node1);
+					return neighbours;
+				} else {
+					v.add(node1);
+					return v;
+				}
+			});
+		} else {
+			graph.compute(node1, (k, v) -> {
+				if(v == null) {
+					Set<Node> neighbours = new HashSet<>();
+					neighbours.add(node2);
+					return neighbours;
+				} else {
+					v.add(node2);
+					return v;
+				}
+			});
+			graph.compute(node2, (k, v) -> {
+				if(v == null) {
+					Set<Node> neighbours = new HashSet<>();
+					neighbours.add(node1);
+					return neighbours;
+				} else {
+					v.add(node1);
+					return v;
+				}
+			});
+		}
+	}
+	
+	private static void travel(Map<Node, Set<Node>> graph, Node start) {
+//		graph.entrySet().forEach(System.out::println);
+		List<Node> visited = new ArrayList<>();
+		Queue<Node> noVisited = new LinkedList<>();
+		noVisited.add(start);
+		while(noVisited.size() > 0) {
+			Node node = noVisited.remove();
+			if(!node.isVisited() && !visited.contains(node)) {				
 				node.setVisited(true);
-				visitedNodes.add(node);
-				neighbours = graph.get(node);
-				notVisitedNodes.addAll(neighbours);
+				Set<Node> neighbours = graph.get(node);
+				noVisited.addAll(neighbours);
+				visited.add(node);
 			}
 		}
-		visitedNodes.sort(Comparator.comparing(Node::getValue));
-		Set<Node> v = new LinkedHashSet<>(visitedNodes); 
-		System.out.println(v.size());
-		v.forEach(node -> System.out.print(node.getValue() + " "));
+		visited.sort(Comparator.comparing(Node::getValue));
+		System.out.println(visited.size());
+		visited.forEach(node -> System.out.print(node.getValue() + " "));
 	}
 	
 	private static class Node {
