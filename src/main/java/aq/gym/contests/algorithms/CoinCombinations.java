@@ -11,6 +11,10 @@ import java.util.stream.Collectors;
 public class CoinCombinations {
 
 	public static void main(String[] args) {
+		dynamicFindCountOfCombination();
+	}
+	
+	private static void recursiveFindCombination() {
 		Scanner scanner = new Scanner(System.in);
 		int n = scanner.nextInt();
 		scanner.close();
@@ -37,5 +41,21 @@ public class CoinCombinations {
 				combination.remove(combination.size() - 1);
 			}
 		}
+	}
+	
+	private static void dynamicFindCountOfCombination() {
+		Scanner scanner = new Scanner(System.in);
+        int money = scanner.nextInt();
+        scanner.close();
+        int[] coins = {1, 5, 10}; // Номиналы монет
+        long[] dp = new long[money + 1]; // Массив для хранения количества способов
+        dp[0] = 1; // Базовый случай: один способ набрать сумму 0
+        // Заполняем массив dp
+        for (int coin : coins) {
+            for (int i = coin; i <= money; i++) {
+                dp[i] += dp[i - coin];
+            }
+        }
+        System.out.println("Количество наборов: " + dp[money]);
 	}
 }
