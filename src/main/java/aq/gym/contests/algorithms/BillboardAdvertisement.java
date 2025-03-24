@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 
 public class BillboardAdvertisement {
@@ -18,7 +17,7 @@ public class BillboardAdvertisement {
 
 	private static void getProfit() {
 		try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-			List<PayOffer> offers = new LinkedList<>();
+			List<PayOffer> offers = new ArrayList<>();
 			List<Integer> billboardWeeks = new ArrayList<>();
 			int[] data = Arrays.stream(br.readLine().split("\\s")).mapToInt(Integer::valueOf).toArray();
 			int billboardsNumber = data[0];
@@ -48,7 +47,7 @@ public class BillboardAdvertisement {
 			int bestOfferNumberWeeks = offer.getNumberOfWeeks();
 			int weekToUse = Integer.min(slotsRemain, bestOfferNumberWeeks);
 			maximalProfit += (bestOfferCost * weekToUse);
-			slotsRemain -= bestOfferNumberWeeks;
+			slotsRemain -= weekToUse;
 			if(slotsRemain <= 0) {
 				break;
 			}
