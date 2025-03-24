@@ -55,6 +55,37 @@ public class BillboardAdvertisement {
 		}
 		return maximalProfit;
 	}
+	
+	@SuppressWarnings("unused")
+	private static long getMaximalProfitNaive(List<PayOffer> offers, List<Integer> billboardWeeks) {
+		long maximalProfit = Long.MIN_VALUE;
+		int slotsRemain = billboardWeeks.size() * billboardWeeks.get(0);
+		for(int i = 0; i < offers.size(); i++) {
+			List<Integer> profits = new ArrayList<>();
+			int offerWeekCost = offers.get(i).getCostPerWeek();
+			int offerNumberWeeks = offers.get(i).getNumberOfWeeks();
+			int weekToUse = Integer.min(slotsRemain, offerNumberWeeks);
+			profits.add(offerWeekCost * weekToUse);
+			slotsRemain -= weekToUse;
+			if(slotsRemain > 0) {				
+				for(int j = i; j < offers.size(); j++) {
+					if(offers.get(i) != offers.get(j) && slotsRemain > 0) {
+						offerWeekCost = offers.get(j).getCostPerWeek();
+						offerNumberWeeks = offers.get(j).getNumberOfWeeks();
+						weekToUse = Integer.min(slotsRemain, offerNumberWeeks);
+						profits.add(offerWeekCost * weekToUse);
+						slotsRemain -= weekToUse;
+					}
+				}
+			} 
+			slotsRemain = billboardWeeks.size() * billboardWeeks.get(0);
+			long totalProfits = profits.stream().mapToLong(Long::valueOf).sum();
+			if(totalProfits > maximalProfit) {
+				maximalProfit = totalProfits;
+			}
+		}
+		return maximalProfit;
+	}
 
 	private static class PayOffer {
 		
