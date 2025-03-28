@@ -1,4 +1,4 @@
-package aq.gym.contests.algorithms;
+package aq.gym.contests.algorithms.sort;
 
 import java.io.BufferedReader;
 import java.io.IOException;
