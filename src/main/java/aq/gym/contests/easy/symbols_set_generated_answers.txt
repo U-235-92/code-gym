@@ -1,0 +1,768 @@
+BEGINNIG OF TEST [1]
+Text: [tmm] Alphabet: [txm]
+Minimal substring length = 0
+ENDING OF TEST [1]
+
+BEGINNIG OF TEST [2]
+Text: [ui] Alphabet: [uhi]
+Minimal substring length = 0
+ENDING OF TEST [2]
+
+BEGINNIG OF TEST [3]
+Text: [cf] Alphabet: [cfi]
+Minimal substring length = 0
+ENDING OF TEST [3]
+
+BEGINNIG OF TEST [4]
+Text: [uquuuuquq] Alphabet: [qu]
+uq
+qu
+uuuuq
+uuuq
+uuq
+uq
+qu
+uq
+Minimal substring length = 2
+ENDING OF TEST [4]
+
+BEGINNIG OF TEST [5]
+Text: [lxxlxx] Alphabet: [dxl]
+Minimal substring length = 0
+ENDING OF TEST [5]
+
+BEGINNIG OF TEST [6]
+Text: [eeeerrwree] Alphabet: [rew]
+eeeerrw
+eeerrw
+eerrw
+errw
+rrwre
+rwre
+wre
+Minimal substring length = 3
+ENDING OF TEST [6]
+
+BEGINNIG OF TEST [7]
+Text: [wwy] Alphabet: [wyn]
+Minimal substring length = 0
+ENDING OF TEST [7]
+
+BEGINNIG OF TEST [8]
+Text: [tgggggt] Alphabet: [tg]
+tg
+gggggt
+ggggt
+gggt
+ggt
+gt
+Minimal substring length = 2
+ENDING OF TEST [8]
+
+BEGINNIG OF TEST [9]
+Text: [zkkzkzzkz] Alphabet: [vzk]
+Minimal substring length = 0
+ENDING OF TEST [9]
+
+BEGINNIG OF TEST [10]
+Text: [fddfff] Alphabet: [sdf]
+Minimal substring length = 0
+ENDING OF TEST [10]
+
+BEGINNIG OF TEST [11]
+Text: [ttt] Alphabet: [ct]
+Minimal substring length = 0
+ENDING OF TEST [11]
+
+BEGINNIG OF TEST [12]
+Text: [bsbsbbbb] Alphabet: [bs]
+bs
+sb
+bs
+sb
+Minimal substring length = 2
+ENDING OF TEST [12]
+
+BEGINNIG OF TEST [13]
+Text: [olnnnonlo] Alphabet: [lno]
+oln
+lnnno
+nnnonl
+nnonl
+nonl
+onl
+nlo
+Minimal substring length = 3
+ENDING OF TEST [13]
+
+BEGINNIG OF TEST [14]
+Text: [gll] Alphabet: [fgl]
+Minimal substring length = 0
+ENDING OF TEST [14]
+
+BEGINNIG OF TEST [15]
+Text: [ksskssksk] Alphabet: [suk]
+Minimal substring length = 0
+ENDING OF TEST [15]
+
+BEGINNIG OF TEST [16]
+Text: [otoottto] Alphabet: [to]
+ot
+to
+oot
+ot
+ttto
+tto
+to
+Minimal substring length = 2
+ENDING OF TEST [16]
+
+BEGINNIG OF TEST [17]
+Text: [yppppypyi] Alphabet: [pyi]
+yppppypyi
+ppppypyi
+pppypyi
+ppypyi
+pypyi
+ypyi
+pyi
+Minimal substring length = 3
+ENDING OF TEST [17]
+
+BEGINNIG OF TEST [18]
+Text: [hhhjhhhh] Alphabet: [hj]
+hhhj
+hhj
+hj
+jh
+Minimal substring length = 2
+ENDING OF TEST [18]
+
+BEGINNIG OF TEST [19]
+Text: [ssddsddsdy] Alphabet: [sdy]
+ssddsddsdy
+sddsddsdy
+ddsddsdy
+dsddsdy
+sddsdy
+ddsdy
+dsdy
+sdy
+Minimal substring length = 3
+ENDING OF TEST [19]
+
+BEGINNIG OF TEST [20]
+Text: [vvvvdviivi] Alphabet: [dvi]
+vvvvdvi
+vvvdvi
+vvdvi
+vdvi
+dvi
+Minimal substring length = 3
+ENDING OF TEST [20]
+
+BEGINNIG OF TEST [21]
+Text: [mhhzz] Alphabet: [hzm]
+mhhz
+Minimal substring length = 4
+ENDING OF TEST [21]
+
+BEGINNIG OF TEST [22]
+Text: [ezzeee] Alphabet: [ez]
+ez
+zze
+ze
+Minimal substring length = 2
+ENDING OF TEST [22]
+
+BEGINNIG OF TEST [23]
+Text: [u] Alphabet: [uwn]
+Minimal substring length = 0
+ENDING OF TEST [23]
+
+BEGINNIG OF TEST [24]
+Text: [bebbbbkekb] Alphabet: [bek]
+bebbbbk
+ebbbbk
+bbbbke
+bbbke
+bbke
+bke
+kekb
+ekb
+Minimal substring length = 3
+ENDING OF TEST [24]
+
+BEGINNIG OF TEST [25]
+Text: [tiiitpiptt] Alphabet: [pti]
+tiiitp
+iiitp
+iitp
+itp
+tpi
+pipt
+ipt
+Minimal substring length = 3
+ENDING OF TEST [25]
+
+BEGINNIG OF TEST [26]
+Text: [meee] Alphabet: [em]
+me
+Minimal substring length = 2
+ENDING OF TEST [26]
+
+BEGINNIG OF TEST [27]
+Text: [lsll] Alphabet: [sul]
+Minimal substring length = 0
+ENDING OF TEST [27]
+
+BEGINNIG OF TEST [28]
+Text: [fofff] Alphabet: [fgo]
+Minimal substring length = 0
+ENDING OF TEST [28]
+
+BEGINNIG OF TEST [29]
+Text: [bpwbpb] Alphabet: [pbw]
+bpw
+pwb
+wbp
+Minimal substring length = 3
+ENDING OF TEST [29]
+
+BEGINNIG OF TEST [30]
+Text: [gg] Alphabet: [bgj]
+Minimal substring length = 0
+ENDING OF TEST [30]
+
+BEGINNIG OF TEST [31]
+Text: [uhiuhu] Alphabet: [uhi]
+uhi
+hiu
+iuh
+Minimal substring length = 3
+ENDING OF TEST [31]
+
+BEGINNIG OF TEST [32]
+Text: [lglgiiligl] Alphabet: [gil]
+lglgi
+glgi
+lgi
+giil
+iilig
+ilig
+lig
+igl
+Minimal substring length = 3
+ENDING OF TEST [32]
+
+BEGINNIG OF TEST [33]
+Text: [sewewwewsw] Alphabet: [sew]
+sew
+ewewwews
+wewwews
+ewwews
+wwews
+wews
+ews
+Minimal substring length = 3
+ENDING OF TEST [33]
+
+BEGINNIG OF TEST [34]
+Text: [gggssggg] Alphabet: [sg]
+gggs
+ggs
+gs
+ssg
+sg
+Minimal substring length = 2
+ENDING OF TEST [34]
+
+BEGINNIG OF TEST [35]
+Text: [ejeujjujuu] Alphabet: [uej]
+ejeu
+jeu
+euj
+Minimal substring length = 3
+ENDING OF TEST [35]
+
+BEGINNIG OF TEST [36]
+Text: [fxgggfgfxf] Alphabet: [fgx]
+fxg
+xgggf
+gggfgfx
+ggfgfx
+gfgfx
+fgfx
+gfx
+Minimal substring length = 3
+ENDING OF TEST [36]
+
+BEGINNIG OF TEST [37]
+Text: [rrdddiddi] Alphabet: [rdi]
+rrdddi
+rdddi
+Minimal substring length = 5
+ENDING OF TEST [37]
+
+BEGINNIG OF TEST [38]
+Text: [dijii] Alphabet: [dij]
+dij
+Minimal substring length = 3
+ENDING OF TEST [38]
+
+BEGINNIG OF TEST [39]
+Text: [k] Alphabet: [pzk]
+Minimal substring length = 0
+ENDING OF TEST [39]
+
+BEGINNIG OF TEST [40]
+Text: [zidddz] Alphabet: [diz]
+zid
+idddz
+Minimal substring length = 3
+ENDING OF TEST [40]
+
+BEGINNIG OF TEST [41]
+Text: [ususufss] Alphabet: [suf]
+ususuf
+susuf
+usuf
+suf
+ufs
+Minimal substring length = 3
+ENDING OF TEST [41]
+
+BEGINNIG OF TEST [42]
+Text: [] Alphabet: [rfk]
+Minimal substring length = 0
+ENDING OF TEST [42]
+
+BEGINNIG OF TEST [43]
+Text: [] Alphabet: [giz]
+Minimal substring length = 0
+ENDING OF TEST [43]
+
+BEGINNIG OF TEST [44]
+Text: [jjjzhzz] Alphabet: [hjz]
+jjjzh
+jjzh
+jzh
+Minimal substring length = 3
+ENDING OF TEST [44]
+
+BEGINNIG OF TEST [45]
+Text: [zszzszis] Alphabet: [siz]
+zszzszi
+szzszi
+zzszi
+zszi
+szi
+zis
+Minimal substring length = 3
+ENDING OF TEST [45]
+
+BEGINNIG OF TEST [46]
+Text: [] Alphabet: [wgx]
+Minimal substring length = 0
+ENDING OF TEST [46]
+
+BEGINNIG OF TEST [47]
+Text: [tibbbi] Alphabet: [bti]
+tib
+Minimal substring length = 3
+ENDING OF TEST [47]
+
+BEGINNIG OF TEST [48]
+Text: [rrqqqiqr] Alphabet: [qri]
+rrqqqi
+rqqqi
+qqqiqr
+qqiqr
+qiqr
+iqr
+Minimal substring length = 3
+ENDING OF TEST [48]
+
+BEGINNIG OF TEST [49]
+Text: [s] Alphabet: [sio]
+Minimal substring length = 0
+ENDING OF TEST [49]
+
+BEGINNIG OF TEST [50]
+Text: [yk] Alphabet: [ryk]
+Minimal substring length = 0
+ENDING OF TEST [50]
+
+BEGINNIG OF TEST [51]
+Text: [] Alphabet: [qel]
+Minimal substring length = 0
+ENDING OF TEST [51]
+
+BEGINNIG OF TEST [52]
+Text: [] Alphabet: [qfj]
+Minimal substring length = 0
+ENDING OF TEST [52]
+
+BEGINNIG OF TEST [53]
+Text: [xcxckxx] Alphabet: [cxk]
+xcxck
+cxck
+xck
+ckx
+Minimal substring length = 3
+ENDING OF TEST [53]
+
+BEGINNIG OF TEST [54]
+Text: [offttf] Alphabet: [tfo]
+offt
+Minimal substring length = 4
+ENDING OF TEST [54]
+
+BEGINNIG OF TEST [55]
+Text: [cpccypy] Alphabet: [pcy]
+cpccy
+pccy
+ccyp
+cyp
+Minimal substring length = 3
+ENDING OF TEST [55]
+
+BEGINNIG OF TEST [56]
+Text: [khj] Alphabet: [hjk]
+khj
+Minimal substring length = 3
+ENDING OF TEST [56]
+
+BEGINNIG OF TEST [57]
+Text: [] Alphabet: [pfx]
+Minimal substring length = 0
+ENDING OF TEST [57]
+
+BEGINNIG OF TEST [58]
+Text: [ehthe] Alphabet: [teh]
+eht
+hthe
+the
+Minimal substring length = 3
+ENDING OF TEST [58]
+
+BEGINNIG OF TEST [59]
+Text: [nzzggzgn] Alphabet: [gzn]
+nzzg
+zzggzgn
+zggzgn
+ggzgn
+gzgn
+zgn
+Minimal substring length = 3
+ENDING OF TEST [59]
+
+BEGINNIG OF TEST [60]
+Text: [lsl] Alphabet: [stl]
+Minimal substring length = 0
+ENDING OF TEST [60]
+
+BEGINNIG OF TEST [61]
+Text: [oobbooxxob] Alphabet: [bxo]
+oobboox
+obboox
+bboox
+boox
+ooxxob
+oxxob
+xxob
+xob
+Minimal substring length = 3
+ENDING OF TEST [61]
+
+BEGINNIG OF TEST [62]
+Text: [jjjjjjqd] Alphabet: [qdj]
+jjjjjjqd
+jjjjjqd
+jjjjqd
+jjjqd
+jjqd
+jqd
+Minimal substring length = 3
+ENDING OF TEST [62]
+
+BEGINNIG OF TEST [63]
+Text: [xx] Alphabet: [dxz]
+Minimal substring length = 0
+ENDING OF TEST [63]
+
+BEGINNIG OF TEST [64]
+Text: [] Alphabet: [rjk]
+Minimal substring length = 0
+ENDING OF TEST [64]
+
+BEGINNIG OF TEST [65]
+Text: [vvvcvvv] Alphabet: [cv]
+vvvc
+vvc
+vc
+cv
+Minimal substring length = 2
+ENDING OF TEST [65]
+
+BEGINNIG OF TEST [66]
+Text: [wpwwwpwww] Alphabet: [prw]
+Minimal substring length = 0
+ENDING OF TEST [66]
+
+BEGINNIG OF TEST [67]
+Text: [ltzzlztz] Alphabet: [tzl]
+ltz
+tzzl
+zzlzt
+zlzt
+lzt
+Minimal substring length = 3
+ENDING OF TEST [67]
+
+BEGINNIG OF TEST [68]
+Text: [xxllx] Alphabet: [xkl]
+Minimal substring length = 0
+ENDING OF TEST [68]
+
+BEGINNIG OF TEST [69]
+Text: [yjyrjrryy] Alphabet: [ryj]
+yjyr
+jyr
+yrj
+rjrry
+jrry
+Minimal substring length = 3
+ENDING OF TEST [69]
+
+BEGINNIG OF TEST [70]
+Text: [onnoooons] Alphabet: [sno]
+onnoooons
+nnoooons
+noooons
+oooons
+ooons
+oons
+ons
+Minimal substring length = 3
+ENDING OF TEST [70]
+
+BEGINNIG OF TEST [71]
+Text: [jn] Alphabet: [ijn]
+Minimal substring length = 0
+ENDING OF TEST [71]
+
+BEGINNIG OF TEST [72]
+Text: [vlvvlflff] Alphabet: [fvl]
+vlvvlf
+lvvlf
+vvlf
+vlf
+Minimal substring length = 3
+ENDING OF TEST [72]
+
+BEGINNIG OF TEST [73]
+Text: [cxjx] Alphabet: [cxj]
+cxj
+Minimal substring length = 3
+ENDING OF TEST [73]
+
+BEGINNIG OF TEST [74]
+Text: [rmm] Alphabet: [rdm]
+Minimal substring length = 0
+ENDING OF TEST [74]
+
+BEGINNIG OF TEST [75]
+Text: [xxovxoov] Alphabet: [vxo]
+xxov
+xov
+ovx
+vxo
+xoov
+Minimal substring length = 3
+ENDING OF TEST [75]
+
+BEGINNIG OF TEST [76]
+Text: [mmbtmtt] Alphabet: [btm]
+mmbt
+mbt
+btm
+Minimal substring length = 3
+ENDING OF TEST [76]
+
+BEGINNIG OF TEST [77]
+Text: [gtgjtj] Alphabet: [tgj]
+gtgj
+tgj
+gjt
+Minimal substring length = 3
+ENDING OF TEST [77]
+
+BEGINNIG OF TEST [78]
+Text: [loof] Alphabet: [flo]
+loof
+Minimal substring length = 4
+ENDING OF TEST [78]
+
+BEGINNIG OF TEST [79]
+Text: [onttont] Alphabet: [tno]
+ont
+ntto
+tton
+ton
+ont
+Minimal substring length = 3
+ENDING OF TEST [79]
+
+BEGINNIG OF TEST [80]
+Text: [zzz] Alphabet: [zjn]
+Minimal substring length = 0
+ENDING OF TEST [80]
+
+BEGINNIG OF TEST [81]
+Text: [vzvzez] Alphabet: [evz]
+vzvze
+zvze
+vze
+Minimal substring length = 3
+ENDING OF TEST [81]
+
+BEGINNIG OF TEST [82]
+Text: [itit] Alphabet: [ti]
+it
+ti
+it
+Minimal substring length = 2
+ENDING OF TEST [82]
+
+BEGINNIG OF TEST [83]
+Text: [viviui] Alphabet: [uvi]
+viviu
+iviu
+viu
+Minimal substring length = 3
+ENDING OF TEST [83]
+
+BEGINNIG OF TEST [84]
+Text: [] Alphabet: [pv]
+Minimal substring length = 0
+ENDING OF TEST [84]
+
+BEGINNIG OF TEST [85]
+Text: [oryor] Alphabet: [ryo]
+ory
+ryo
+yor
+Minimal substring length = 3
+ENDING OF TEST [85]
+
+BEGINNIG OF TEST [86]
+Text: [wltttlll] Alphabet: [twl]
+wlt
+Minimal substring length = 3
+ENDING OF TEST [86]
+
+BEGINNIG OF TEST [87]
+Text: [s] Alphabet: [smo]
+Minimal substring length = 0
+ENDING OF TEST [87]
+
+BEGINNIG OF TEST [88]
+Text: [ivllviv] Alphabet: [vil]
+ivl
+vllvi
+llvi
+lvi
+Minimal substring length = 3
+ENDING OF TEST [88]
+
+BEGINNIG OF TEST [89]
+Text: [odsdos] Alphabet: [sdo]
+ods
+dsdo
+sdo
+dos
+Minimal substring length = 3
+ENDING OF TEST [89]
+
+BEGINNIG OF TEST [90]
+Text: [tzhhthz] Alphabet: [thz]
+tzh
+zhht
+hhthz
+hthz
+thz
+Minimal substring length = 3
+ENDING OF TEST [90]
+
+BEGINNIG OF TEST [91]
+Text: [ttthotth] Alphabet: [tho]
+tttho
+ttho
+tho
+hot
+otth
+Minimal substring length = 3
+ENDING OF TEST [91]
+
+BEGINNIG OF TEST [92]
+Text: [ih] Alphabet: [hiz]
+Minimal substring length = 0
+ENDING OF TEST [92]
+
+BEGINNIG OF TEST [93]
+Text: [tttvvbttb] Alphabet: [btv]
+tttvvb
+ttvvb
+tvvb
+vvbt
+vbt
+Minimal substring length = 3
+ENDING OF TEST [93]
+
+BEGINNIG OF TEST [94]
+Text: [pkcpcp] Alphabet: [pck]
+pkc
+kcp
+Minimal substring length = 3
+ENDING OF TEST [94]
+
+BEGINNIG OF TEST [95]
+Text: [rtuut] Alphabet: [rtu]
+rtu
+Minimal substring length = 3
+ENDING OF TEST [95]
+
+BEGINNIG OF TEST [96]
+Text: [tc] Alphabet: [qct]
+Minimal substring length = 0
+ENDING OF TEST [96]
+
+BEGINNIG OF TEST [97]
+Text: [vv] Alphabet: [vlm]
+Minimal substring length = 0
+ENDING OF TEST [97]
+
+BEGINNIG OF TEST [98]
+Text: [yffyfj] Alphabet: [fyj]
+yffyfj
+ffyfj
+fyfj
+yfj
+Minimal substring length = 3
+ENDING OF TEST [98]
+
+BEGINNIG OF TEST [99]
+Text: [vuv] Alphabet: [cuv]
+Minimal substring length = 0
+ENDING OF TEST [99]
+
+BEGINNIG OF TEST [100]
+Text: [ruouro] Alphabet: [ruo]
+ruo
+uour
+our
+uro
+Minimal substring length = 3
+ENDING OF TEST [100]
+
