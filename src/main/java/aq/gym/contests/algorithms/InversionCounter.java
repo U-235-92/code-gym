@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class InversionCounter {
+	
+	private static int alternativeInverseCounter = 0;
 
 	public static void main(String[] args) {
 		calculateInversionNumber();
@@ -49,6 +51,7 @@ public class InversionCounter {
 				leftIdx++;
 			} else {
 				inverseCount = inverseCount + (left.length - leftIdx); 
+				alternativeInverseCounter = alternativeInverseCounter + (left.length - leftIdx);
 				origin[originIdx] = right[rightIdx];
 				rightIdx++;	
 			}
