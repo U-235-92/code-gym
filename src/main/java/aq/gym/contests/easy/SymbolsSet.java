@@ -19,9 +19,9 @@ import java.util.stream.Stream;
 public class SymbolsSet {
 
 	public static void main(String[] args) {
-		Test test = new Test();
-		test.generateAnswers();
-//		app();
+//		Test test = new Test();
+//		test.generateAnswers();
+		app();
 	}
 	
 	@SuppressWarnings("unused")
