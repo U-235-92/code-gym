@@ -1,4 +1,4 @@
-package aq.gym.contests.easy;
+package aq.gym.contests.algorithms.graph;
 
 import java.io.BufferedReader;
 import java.io.IOException;
