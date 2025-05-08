@@ -4,6 +4,11 @@ import java.util.Arrays;
 
 public class LongestCommonPrefix {
 
+	public static void main(String[] args) {
+		String prefix = new LongestCommonPrefix().longestCommonPrefix(new String[]{"dog","racecar","car"});
+		System.out.println(prefix);
+	}
+	
 	public String longestCommonPrefix(String[] strings) {
 		if (strings == null || strings.length == 0) 
 			return "";
