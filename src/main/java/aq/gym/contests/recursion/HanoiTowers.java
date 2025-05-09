@@ -1,4 +1,4 @@
-package aq.gym.contests.other;
+package aq.gym.contests.recursion;
 
 import java.util.ArrayList;
 import java.util.List;

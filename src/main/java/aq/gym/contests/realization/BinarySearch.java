@@ -1,4 +1,4 @@
-package aq.gym.contests.other;
+package aq.gym.contests.realization;
 
 import java.io.BufferedReader;
 import java.io.IOException;
