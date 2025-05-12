@@ -3,6 +3,7 @@ package aq.gym.contests.tree;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 public class BinaryTreePreorderTraversal {
@@ -18,7 +19,7 @@ public class BinaryTreePreorderTraversal {
 		TreeNode n3 = new TreeNode(3);
 		root.right = n2;
 		n2.left = n3;
-		System.out.println(new BinaryTreePreorderTraversal().preorderTraversal(root));
+		System.out.println(new BinaryTreePreorderTraversal().preorderTraversalIteratively(root));
 	}
 
 	private static void secondExample() {
@@ -36,10 +37,10 @@ public class BinaryTreePreorderTraversal {
 		n5.left = n6; n5.right = n7;
 		n3.right = n8;
 		n8.left = n9;
-		System.out.println(new BinaryTreePreorderTraversal().preorderTraversal(root));
+		System.out.println(new BinaryTreePreorderTraversal().preorderTraversalRecursively(root));
 	}
 	
-	public List<Integer> preorderTraversal(TreeNode root) {
+	public List<Integer> preorderTraversalIteratively(TreeNode root) {
 		List<Integer> preorderTraverse = new ArrayList<>();
 		if(root == null) 
 			return preorderTraverse;
@@ -53,4 +54,18 @@ public class BinaryTreePreorderTraversal {
         }
         return preorderTraverse;
     }
+	
+	public List<Integer> preorderTraversalRecursively(TreeNode root) {
+		List<Integer> traverse = new LinkedList<>();
+		traverse(root, traverse);
+		return traverse;
+	}
+	
+	private void traverse(TreeNode node, List<Integer> traverse) {
+		if(node == null) 
+			return;
+		traverse.add(node.val);
+		traverse(node.left, traverse);
+		traverse(node.right, traverse);
+	}
 }

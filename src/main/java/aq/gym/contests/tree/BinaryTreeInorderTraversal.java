@@ -3,6 +3,7 @@ package aq.gym.contests.tree;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 public class BinaryTreeInorderTraversal {
@@ -20,7 +21,7 @@ public class BinaryTreeInorderTraversal {
 		TreeNode n3 = new TreeNode(3);
 		root.right = n2;
 		n2.left = n3;
-		System.out.println(new BinaryTreeInorderTraversal().inorderTraversal(root));
+		System.out.println(new BinaryTreeInorderTraversal().inorderTraversalIteratively(root));
 	}
 
 	private static void secondExample() {
@@ -38,7 +39,7 @@ public class BinaryTreeInorderTraversal {
 		n5.left = n6; n5.right = n7;
 		n3.right = n8;
 		n8.left = n9;
-		System.out.println(new BinaryTreeInorderTraversal().inorderTraversal(root));
+		System.out.println(new BinaryTreeInorderTraversal().inorderTraversaRecursively(root));
 	}
 	
 	private static void thirdExample() {
@@ -47,7 +48,7 @@ public class BinaryTreeInorderTraversal {
 		TreeNode n3 = new TreeNode(3);
 		root.left = n2;
 		n2.left = n3;
-		System.out.println(new BinaryTreeInorderTraversal().inorderTraversal(root));
+		System.out.println(new BinaryTreeInorderTraversal().inorderTraversalIteratively(root));
 	}
 	
 	private static void fourthExample() {
@@ -56,10 +57,10 @@ public class BinaryTreeInorderTraversal {
 		TreeNode n3 = new TreeNode(3);
 		root.right = n2;
 		n2.right = n3;
-		System.out.println(new BinaryTreeInorderTraversal().inorderTraversal(root));
+		System.out.println(new BinaryTreeInorderTraversal().inorderTraversalIteratively(root));
 	}
 	
-	public List<Integer> inorderTraversal(TreeNode root) {
+	public List<Integer> inorderTraversalIteratively(TreeNode root) {
 		List<Integer> inorderTraverse = new ArrayList<>();
 		if(root == null) 
 			return inorderTraverse;
@@ -90,4 +91,18 @@ public class BinaryTreeInorderTraversal {
 		}
 		return inorderTraverse;
     }
+	
+	public List<Integer> inorderTraversaRecursively(TreeNode root) {
+		List<Integer> traverse = new LinkedList<>();
+		traverse(root, traverse);
+		return traverse;
+	}
+	
+	private void traverse(TreeNode node, List<Integer> traverse) {
+		if(node == null) 
+			return;
+		traverse(node.left, traverse);
+		traverse.add(node.val);
+		traverse(node.right, traverse);
+	}
 }
