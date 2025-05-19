@@ -1,4 +1,4 @@
-package aq.gym.work_with_objects.serialization;
+package aq.gym.io.serialization.version;
 
 import java.io.File;
 import java.io.FileInputStream;

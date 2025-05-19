@@ -1,4 +1,4 @@
-package aq.gym.inheritence;
+package aq.gym.work_with_objects.inheritence;
 
 public class Main {
 

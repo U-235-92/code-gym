@@ -1,4 +1,4 @@
-package aq.gym.contests.graph;
+package aq.gym.contests.recursion;
 
 public class NumberOfIslands {
 
