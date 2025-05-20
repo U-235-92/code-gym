@@ -1,10 +1,11 @@
 package aq.gym.contests.recursion;
 
-public class NumberOfIslands {
+@SuppressWarnings("unused")
+public class IslandsNumberRecursion {
 
 	public static void main(String[] args) {
 		char[][] grid = getGrid5();
-		System.out.println(new NumberOfIslands().numIslands(grid));
+		System.out.println(new IslandsNumberRecursion().numIslands(grid));
 	}
 	
 	private static char[][] getGrid1() {
