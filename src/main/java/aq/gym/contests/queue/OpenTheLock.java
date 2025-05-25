@@ -1,4 +1,4 @@
-package aq.gym.contests.graph;
+package aq.gym.contests.queue;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
