@@ -8,7 +8,7 @@ import java.util.Set;
 public class PerfectSquares {
 
 	public static void main(String[] args) {
-		int val = 13;
+		int val = 5;
 		System.out.println(new PerfectSquares().numSquares(val));
 	}
 
