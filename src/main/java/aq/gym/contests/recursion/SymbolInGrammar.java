@@ -6,11 +6,25 @@ import java.util.Map;
 public class SymbolInGrammar {
 
 	public static void main(String[] args) {
-		int n = 30, k = 1;
+		int n = 30, k = 8;
 		System.out.println(new SymbolInGrammar().kthGrammar(n, k));
 	}
 
-    public int kthGrammar(int n, int k) {
+	public int kthGrammar(int n, int k) {
+		return 1 - grammar(n, k);
+	}
+	
+	private int grammar(int n, int k) {
+		if(n == 0) 
+			return 0;
+		int lineLength = (int) (Math.pow(2, n - 1));
+		if(k > lineLength / 2) 
+			return 1 - grammar(n - 1, k - (lineLength / 2));
+		else 
+			return grammar(n - 1, k);
+	}
+	
+    public int kthGrammarBruteForce(int n, int k) {
     	if(n == 1) {
     		return 0;
     	} else if(n == 2) {
@@ -22,12 +36,12 @@ public class SymbolInGrammar {
     	}
     	Map<Integer, StringBuilder> cache = new HashMap<>();
     	cache.put(2, new StringBuilder("01"));
-    	grammar(n, 3, cache);
-//    	cache.forEach((key, val) -> System.out.printf("%-2d: %s%n", key, val));
+    	grammarBruteForce(n, 3, cache);
+    	cache.forEach((key, val) -> System.out.printf("%-2d: %s%n", key, val));
     	return cache.get(n).toString().toCharArray()[k - 1] - '0';
     }
     
-    private void grammar(int n, int cur, Map<Integer, StringBuilder> cache) {
+    private void grammarBruteForce(int n, int cur, Map<Integer, StringBuilder> cache) {
     	if(cur > n) {
     		return;
     	}
@@ -36,8 +50,7 @@ public class SymbolInGrammar {
     	StringBuilder sb = new StringBuilder(cache.get(cur - 1));
     	sb.append(remain);
     	cache.put(cur, sb);
-    	cache.remove(cur - 1);
-		grammar(n, cur + 1, cache);
+		grammarBruteForce(n, cur + 1, cache);
     }
     
     private void replace(char[] remain) {
