@@ -3,7 +3,6 @@ package aq.gym.swing;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.security.KeyStore;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
@@ -15,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
-public class PanelFiller {
+public class PanelColorFiller {
 
 	public static void main(String[] args) {
 		View view = new View();
@@ -23,7 +22,7 @@ public class PanelFiller {
 	}
 
 	private static class View {
-		
+
 		@SuppressWarnings("unused")
 		void runGUI() {
 			SwingUtilities.invokeLater(() -> {
@@ -38,27 +37,30 @@ public class PanelFiller {
 				redButton.addActionListener(e -> changeColor(Color.RED, panel));
 				greenButton.addActionListener(e -> changeColor(Color.GREEN, panel));
 				blueButton.addActionListener(e -> changeColor(Color.BLUE, panel));
-				AbstractAction redAction = new AbstractAction() {					
+				@SuppressWarnings("serial")
+				AbstractAction redAction = new AbstractAction() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						changeColor(Color.RED, panel);
 					}
 				};
-				AbstractAction greenAction = new AbstractAction() {					
+				@SuppressWarnings("serial")
+				AbstractAction greenAction = new AbstractAction() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						changeColor(Color.GREEN, panel);
 					}
 				};
-				AbstractAction blueAction = new AbstractAction() {					
+				@SuppressWarnings("serial")
+				AbstractAction blueAction = new AbstractAction() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						changeColor(Color.BLUE, panel);
 					}
 				};
-				KeyStroke redKeyStroke = KeyStroke.getKeyStroke("ctrl r");
-				KeyStroke greenKeyStroke = KeyStroke.getKeyStroke("ctrl g");
-				KeyStroke blueKeyStroke = KeyStroke.getKeyStroke("ctrl b");
+				KeyStroke redKeyStroke = KeyStroke.getKeyStroke("ctrl R");
+				KeyStroke greenKeyStroke = KeyStroke.getKeyStroke("ctrl G");
+				KeyStroke blueKeyStroke = KeyStroke.getKeyStroke("ctrl B");
 				InputMap inMap = panel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 				inMap.put(redKeyStroke, "red.panel");
 				inMap.put(greenKeyStroke, "green.panel");
@@ -81,7 +83,7 @@ public class PanelFiller {
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			});
 		}
-		
+
 		private void changeColor(Color color, JPanel panel) {
 			panel.setBackground(color);
 			panel.repaint();
