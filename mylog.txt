@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-08-26T13:51:08.298403100Z</date>
+  <millis>1756216268298</millis>
+  <nanos>403100</nanos>
+  <sequence>0</sequence>
+  <logger>aq.gym.logging.WhereSaveLogFileByDeafult</logger>
+  <level>INFO</level>
+  <class>aq.gym.logging.WhereSaveLogFileByDeafult</class>
+  <method>main</method>
+  <thread>3</thread>
+  <message>Log message, level: INFO</message>
+</record>
+</log>
