@@ -89,6 +89,6 @@ public class InterruptableConsumer {
 	
 	public synchronized void interrupt() {
 		isConsuming = false;
-		warnLog.warning("Consumer was interrupted");
+		devLog.fine("Consumer was interrupted");
 	}
 }

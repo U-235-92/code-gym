@@ -58,7 +58,7 @@ public class MadProducer {
 		} catch(Exception exc) {
 			exc.printStackTrace();
 		} finally {
-			log.info(String.format("Thread %s finished produce messages", Thread.currentThread().getName()));
+			log.info(String.format("Thread %s finished producing messages", Thread.currentThread().getName()));
 		}
 	}
 }
