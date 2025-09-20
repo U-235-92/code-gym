@@ -1,6 +1,8 @@
 package aq.gym.contests.realization;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,12 +26,12 @@ public class ImplementRouter {
 //		System.out.println();
 //		
 ////		Test case 2
-//		System.out.println("Test case #2:");
-//		Router router2 = new Router(2);
-//		System.out.println(router2.addPacket(7, 4, 90)); // Return true
-//		System.out.println(Arrays.toString(router2.forwardPacket())); // Return [7, 4, 90]
-//		System.out.println(Arrays.toString(router2.forwardPacket()));  // Return an empty array because router is empty
-//		System.out.println();
+		System.out.println("Test case #2:");
+		Router router2 = new Router(2);
+		System.out.println(router2.addPacket(7, 4, 90)); // Return true
+		System.out.println(Arrays.toString(router2.forwardPacket())); // Return [7, 4, 90]
+		System.out.println(Arrays.toString(router2.forwardPacket()));  // Return an empty array because router is empty
+		System.out.println();
 //		
 ////		Test case 3
 //		System.out.println("Test case #3:");
@@ -109,18 +111,17 @@ class Router {
         this.memmoryLimit = memoryLimit;
     }
     
-    public boolean addPacket(int source, int destination, int timestamp) {
+	public boolean addPacket(int source, int destination, int timestamp) {
         int[] packet = new int[] {source, destination, timestamp};
         String digest = getDigest(source, destination, timestamp);
         if(packetDigests.contains(digest)) {
         	return false;
         } else {
         	if(packetQueue.size() < memmoryLimit) {
-        		packetDigests.add(digest);
-        		packetQueue.add(packet);
+        		storeDataIntoCollections(digest, packet, destination);
         	} else {
         		forwardPacket();
-        		packetQueue.add(packet);
+        		storeDataIntoCollections(digest, packet, destination);
         	}
         	return true;
         }
@@ -134,11 +135,27 @@ class Router {
     	return String.format(DIGEST_FORMAT, packet[0], packet[1], packet[2]);
     }
     
+    @SuppressWarnings("unused")
+	private void storeDataIntoCollections(String digest, int[] packet, int destination) {
+    	packetDigests.add(digest);
+		packetQueue.add(packet);
+		packetDestinations.compute(destination, (k, v) ->  {
+			if(v == null) {
+				return new ArrayList<>();
+			} else {
+				v.add(packet);
+				return v;
+			}
+		});
+    }
+    
     public int[] forwardPacket() {
-    	if(!packetQueue.isEmpty()) {    		
+    	if(!packetQueue.isEmpty()) {    
+    		final int destinationIndex = 1;
     		int[] packet = packetQueue.remove();
     		String digest = getDigest(packet);
     		packetDigests.remove(digest);
+    		packetDestinations.get(packet[destinationIndex]).remove(packet);
     		return packet; 
     	} else {
     		return new int[] {};
