@@ -158,11 +158,29 @@ class Router {
     		int[] packet = packetQueue.remove();
     		String digest = getDigest(packet);
     		packetDigests.remove(digest);
-    		packetDestinations.get(packet[destinationIndex]).remove(packet);
+    		int packetIndex = getPacketDestinationIndex(packetDestinations.get(packet[destinationIndex]), packet[2]);
+    		packetDestinations.get(packet[destinationIndex]).remove(packetIndex);
     		return packet; 
     	} else {
     		return new int[] {};
     	}
+    }
+    
+    private int getPacketDestinationIndex(List<int[]> destinations, int targetTimestamp) {
+    	final int timestampIndex = 2;
+    	int left = 0, right = destinations.size() - 1;
+    	while(left <= right) {
+    		int mid = left + (right - left) / 2;
+    		int timestamp = destinations.get(mid)[timestampIndex];
+    		if(timestamp == targetTimestamp) {
+    			return mid;
+    		} else if(timestamp > targetTimestamp) {
+    			right = mid - 1;
+    		} else {
+    			left = left + 1;
+    		}
+    	}
+    	return -1;
     }
     
     public int getCount(int destination, int startTime, int endTime) {
