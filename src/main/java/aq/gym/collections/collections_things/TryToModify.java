@@ -1,6 +1,8 @@
 package aq.gym.collections.collections_things;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,11 +10,32 @@ import java.util.Map;
 public class TryToModify {
 
 	public static void main(String[] args) {
+		collectionViewOperations();
 		youCanModifyKeyValuePairOfMapButItHasSomeImportantDetails();
 		youCantSortMapByEntrySet();
 		youCanModifyMapByEntrySet();
 		youCantModdifyListCreatedByOfMethod();
 		youCanModdifyListCreatedByAsListMethod();
+	}
+	
+	private static void collectionViewOperations() {
+		List<Integer> numbers = List.of(5, 8, 26); // Creation of unmodified collection which size is final;
+//		Collections.sort(numbers); // Error: you can't modify!
+//		Collections.shuffle(numbers); // Error: you can't modify!
+		List<Integer> sub = numbers.subList(0, 1);
+//		sub.add(3); //Error! Try to modify unmodified list
+		System.out.println(sub);
+//		numbers.add(55); // Error: you can't add or remove element from view;
+//		numbers.set(1, 8); // Error: you can't modify element of view;
+		List<Integer> numbers2 = new ArrayList<>(List.of(1, 3, 2));
+		List<Integer> sublist = numbers2.subList(1, numbers2.size());
+		System.out.println(sublist);
+		Collections.sort(sublist);
+		System.out.println(sublist);
+		System.out.println(numbers2);
+		sublist.add(22);
+		System.out.println(sublist);
+		System.out.println(numbers2);
 	}
 	
 	private static void youCanModifyKeyValuePairOfMapButItHasSomeImportantDetails() {
