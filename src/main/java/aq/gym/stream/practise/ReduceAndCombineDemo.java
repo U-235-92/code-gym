@@ -11,6 +11,7 @@ public class ReduceAndCombineDemo {
 	}
 
 	private static void parallelStreamReduceExample() {
+		System.out.println("Parallel stream reduce work example:");
 		List<Integer> parallelStreamReduceWorkExample = Stream.iterate(1, n -> n + 1).limit(3).toList(); 
 		int parallelStreamResult = parallelStreamReduceWorkExample.parallelStream().reduce(5, 
 				(a, b) -> {
@@ -21,11 +22,11 @@ public class ReduceAndCombineDemo {
 					System.out.println(String.format("Combiner call: %d * %d", a, b));
 					return a * b;
 		});
-		System.out.println("Parallel stream reduce work example:");
 		System.out.println(parallelStreamResult);
 	}
 	
 	private static void regularStreamReduceExample() {
+		System.out.println("Regular stream reduce work example:");
 		List<Integer> regularStreamReduceWorkExample = Stream.iterate(1, n -> n + 1).limit(3).toList(); 
 		int regularStreamResult = regularStreamReduceWorkExample.stream().reduce(5, 
 				(a, b) -> {
@@ -36,7 +37,6 @@ public class ReduceAndCombineDemo {
 					System.out.println(String.format("Combiner call: %d * %d", a, b));
 					return a * b;
 		});
-		System.out.println("Regular stream reduce work example:");
 		System.out.println(regularStreamResult);
 	}
 }
