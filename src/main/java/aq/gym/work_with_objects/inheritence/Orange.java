@@ -11,7 +11,7 @@ public class Orange extends Fruit {
 	
 	@Override
 	public int getId() {
-		System.out.println("From Fruit, id = " + id);
+		System.out.println("From Orange, id = " + id);
 		return id;
 	}
 	
