@@ -6,7 +6,8 @@ public class MoveZeros {
 
 	public static void main(String[] args) {
 		int[] nums = {0};
-		new MoveZeros().moveZeroes(nums);
+		int[] nums2 = {0,1,0,3,12};
+		new MoveZeros().moveZeroes(nums2);
 	}
 	
 	public void moveZeroes(int[] nums) {
