@@ -43,25 +43,45 @@ public class Main {
 //		}
 //		transaction.commit();
 		
+//		EntityTransaction transaction = entityManager.getTransaction();
+//		transaction.begin();
+//		Client john = new Client("John");
+//		entityManager.persist(john);
+//		transaction.commit();
+//		
+////		entityManager.detach(john);
+//		System.out.println("Does context contain " + john + " ??? " + entityManager.contains(john));
+//		john.setName("Middle John");
+//		transaction.begin();
+//		try {
+//			System.out.println("Press any key...");
+//			System.in.read();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		entityManager.refresh(john);
+////		entityManager.detach(john);
+//		transaction.commit();
+		
+		Client a = new Client("A_FLUSH_22");
+		Client b = new Client("B_FLUSH_22");
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
-		Client john = new Client("John");
-		entityManager.persist(john);
-		transaction.commit();
-		
-//		entityManager.detach(john);
-		System.out.println("Does context contain " + john + " ??? " + entityManager.contains(john));
-		john.setName("Middle John");
-		transaction.begin();
+		entityManager.persist(a);
+		entityManager.persist(b);
+		entityManager.flush();
+		b.setName("B_321");
 		try {
 			System.out.println("Press any key...");
 			System.in.read();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		entityManager.refresh(john);
-//		entityManager.detach(john);
+//		transaction.rollback();
 		transaction.commit();
+		System.out.println(entityManager.contains(a));
+		entityManager.clear();
+		System.out.println(entityManager.contains(a));
 	}
 
 }
