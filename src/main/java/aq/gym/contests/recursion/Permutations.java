@@ -1,4 +1,4 @@
-package aq.gym.contests.array;
+package aq.gym.contests.recursion;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -23,18 +23,18 @@ public class Permutations {
         return ans;
     }
 
-    public void permutation(List<List<Integer>> ans, List<Integer> take, Queue<Integer> remain) {
-        if (remain.isEmpty()) {
-            ans.add(new ArrayList<>(take));
+    public void permutation(List<List<Integer>> permutations, List<Integer> currentPermutation, Queue<Integer> elementsToPermute) {
+        if (elementsToPermute.isEmpty()) {
+            permutations.add(new ArrayList<>(currentPermutation));
             return;
         }
 
-        int curr = remain.poll();
-        for (int i = 0; i <= take.size(); i++) {
-            ArrayList<Integer> temp = new ArrayList<>(take);
+        int curr = elementsToPermute.poll();
+        for (int i = 0; i <= currentPermutation.size(); i++) {
+            ArrayList<Integer> temp = new ArrayList<>(currentPermutation);
             temp.add(i, curr);
-            permutation(ans, temp, remain);
+            permutation(permutations, temp, elementsToPermute);
         }
-        remain.add(curr);
+        elementsToPermute.add(curr);
     }
 }
