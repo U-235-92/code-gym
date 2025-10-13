@@ -1,4 +1,4 @@
-package aq.gym.contests.numbers;
+package aq.gym.contests.bit_operation;
 
 import java.util.Arrays;
 
