@@ -1,4 +1,4 @@
-package aq.gym.contests.backtrecking;
+package aq.gym.contests.backtracking;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
