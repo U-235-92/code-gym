@@ -1,4 +1,4 @@
-package aq.gym.contests.recursion;
+package aq.gym.contests.backtrecking;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
