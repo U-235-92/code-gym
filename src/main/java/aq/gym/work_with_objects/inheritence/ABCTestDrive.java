@@ -20,13 +20,5 @@ public class ABCTestDrive {
 		};
 //		b.thisMethodDoesntDefineInB(); // ERR! You can't use defined method out of Anonymous class;
 		b.abstractFromB();
-		int iNum = Integer.MAX_VALUE;
-		long lNum = 1L;
-		long lNum2 = Integer.MAX_VALUE;
-//		long result = iNum + lNum; // Correct answer [2147483648] because by default type convert to biggest type operand
-//		long result = iNum + 1L; // Correct answer [2147483648] because by default type convert to biggest type operand
-//		long result = iNum + 1; // ERR! Incorrect answer [-2147483648] because by default type convert to biggest type operand (in this case to integer)
-		long result = lNum2 + 1; // Correct answer [2147483648] because by default type convert to biggest type operand (in this case to integer)
-		System.out.println(result);
 	}
 }
