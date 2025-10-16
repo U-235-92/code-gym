@@ -2,6 +2,7 @@ package aq.gym.contests.tree;
 
 public class InvertBinaryTree {
 
+//	https://leetcode.com/problems/invert-binary-tree/description/
 	public static void main(String[] args) {
 //		[4,2,7,1,3,6,9]
 		TreeNode root = new TreeNode(4);
