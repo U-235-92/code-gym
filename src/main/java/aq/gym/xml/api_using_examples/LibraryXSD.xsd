@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+	<!-- LIBRARY ELEMENT -->
+	<xs:element name="library">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="book" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute ref="lib_name" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<!-- BOOK ELEMENT -->
+	<xs:element name="book">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="title" />
+				<xs:element ref="author" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute ref="id" use="required" />
+			<xs:attribute ref="type" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<!-- TITLE ELEMENT -->
+	<xs:element name="title" type="xs:string" />
+	<!-- AUTHOR ELEMENT -->
+	<xs:element name="author" type="xs:string" />
+	<!-- ATRIBUTES -->
+	<xs:attribute name="lib_name" type="xs:string" />
+	<xs:attribute name="id" type="xs:ID" />
+	<xs:attribute name="type" type="xs:string" />
+</xs:schema>

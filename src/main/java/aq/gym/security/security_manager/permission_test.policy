@@ -1,0 +1,4 @@
+grant 
+{
+	permission com.other.security_manager_example.WordCheckPermission "sex,drugs,C++", "avoid";
+};

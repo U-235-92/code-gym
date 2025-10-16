@@ -1,4 +1,4 @@
-package aq.gym.net.echo_udp_client_server;
+package aq.gym.net.udp.echo_udp_client_server;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

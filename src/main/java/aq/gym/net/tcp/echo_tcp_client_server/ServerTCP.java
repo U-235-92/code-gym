@@ -1,4 +1,4 @@
-package aq.gym.net.echo_tcp_client_server;
+package aq.gym.net.tcp.echo_tcp_client_server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

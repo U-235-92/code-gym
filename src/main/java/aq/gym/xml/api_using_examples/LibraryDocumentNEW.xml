@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<library xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	lib_name="New library" xsi:noNamespaceSchemaLocation="LibraryXSD.xsd">
+	<book id="SN-1" type="Информатика">
+		<title>Java. Полное руководство</title>
+		<author>Герберт Шилдт</author>
+	</book>
+	<book id="SN-2" type="Проза">
+		<title>Сборник стихов Пушкина</title>
+		<author>Александ Пушкин</author>
+	</book>
+	<book id="SN-3" type="Фантастика">
+		<title>Приключения Алисы</title>
+		<author>Александ Пушкин</author>
+	</book>
+	<book id="SN-4" type="Фантастика">
+		<title>Все обо всем</title>
+		<author>Иван Иванов</author>
+		<author>Петр Петров</author>
+	</book>
+</library>

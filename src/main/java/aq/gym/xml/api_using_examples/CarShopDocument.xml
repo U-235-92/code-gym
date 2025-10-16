@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<car_shop shop_name="My car shop" shop_phone="89995558822">
+	<cars>
+		<car type="SPORT" price="100">
+			<manufacturer>BMV</manufacturer>
+			<model>M5</model>
+		</car>
+		<car type="SPORT" price="250">
+			<manufacturer>Mercedess</manufacturer>
+			<model>Mclaren</model>
+		</car>
+	</cars>
+</car_shop>
