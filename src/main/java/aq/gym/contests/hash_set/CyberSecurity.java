@@ -1,4 +1,4 @@
-package aq.gym.contests.set;
+package aq.gym.contests.hash_set;
 
 import java.io.BufferedReader;
 import java.io.IOException;

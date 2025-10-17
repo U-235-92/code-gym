@@ -1,4 +1,4 @@
-package aq.gym.contests.hash_collection;
+package aq.gym.contests.hash_set;
 
 import java.util.LinkedList;
 

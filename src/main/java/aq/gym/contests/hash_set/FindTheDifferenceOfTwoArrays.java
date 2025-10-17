@@ -1,4 +1,4 @@
-package aq.gym.contests.set;
+package aq.gym.contests.hash_set;
 
 import java.util.ArrayList;
 import java.util.HashSet;
