@@ -1,4 +1,4 @@
-package aq.gym.contests.realization;
+package aq.gym.contests.math;
 
 import java.util.Arrays;
 import java.util.Scanner;
