@@ -1,4 +1,4 @@
-package aq.gym.contests.array;
+package aq.gym.contests.sliding_window;
 
 public class MaximumAverageSubarray_I {
 
