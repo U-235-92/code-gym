@@ -9,6 +9,7 @@ public class ArrayPermutations {
 static final int MOD = 1000000007;
     
     public static void main(String[] args) {
+    	
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int[] a = new int[n];

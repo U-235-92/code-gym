@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class ColoredNumberCombinations {
 
     public static void main(String[] args) {
+    	
         final int MOD = 1_000_000_007;
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
