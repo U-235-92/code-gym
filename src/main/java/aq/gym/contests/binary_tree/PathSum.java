@@ -1,4 +1,4 @@
-package aq.gym.contests.tree;
+package aq.gym.contests.binary_tree;
 
 import java.util.HashSet;
 import java.util.Set;
