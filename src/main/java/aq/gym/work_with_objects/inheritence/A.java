@@ -14,7 +14,11 @@ public class A {
 		System.out.println("Constructor from A");
 	}
 	
-	public void fromA() {
-		System.out.println("From A");
+	protected void fromA() { // See comments in class B
+		System.out.println("Call method in class A: From A");
+	}
+	
+	public void youArentAbleShrinkMyVisibility() {
+		System.err.println("ERR");
 	}
 }

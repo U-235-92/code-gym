@@ -4,10 +4,13 @@ public class ABCTestDrive {
 
 	public static void main(String[] args) {
 		System.out.println("+++++++++ Create A = new C() +++");
-		A polyA = new C();
+		B polyB = new C();
+		polyB.abstractFromB();
 		System.out.println("+++++++++ Create A = new A() +++");
 		A a = new A();
-		B b = new B() {
+		a.fromA();
+		System.out.println("+++++++++ Create anonymous new B() { ... } +++");
+		B b = new B(58) {
 			
 			@Override
 			public void abstractFromB() {
@@ -15,7 +18,7 @@ public class ABCTestDrive {
 			}
 			
 			public void thisMethodDoesntDefineInB() {
-				System.out.println("Trick it!");
+				System.out.println("Trick it! number field of B = " + this.getNumber());
 			}
 		};
 //		b.thisMethodDoesntDefineInB(); // ERR! You can't use defined method out of Anonymous class;

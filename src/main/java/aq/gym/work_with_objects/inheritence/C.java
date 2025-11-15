@@ -16,6 +16,6 @@ public class C extends B {
 	
 	@Override
 	public void abstractFromB() {
-		System.out.println("Override abstract method of class B in class C");
+		System.out.println("Call method in class C: Override abstract method of class B in class C");
 	}
 }
