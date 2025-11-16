@@ -1,6 +1,6 @@
 package aq.gym.work_with_objects.inheritence;
 
-public abstract class B extends A {
+public abstract class B extends A { // REMEMBER! You can declare class as abstract or final NOT both!
 
 	static {
 		System.out.println("Static bloc from B");
@@ -11,6 +11,8 @@ public abstract class B extends A {
 	}
 	
 	private int number;
+	
+	protected int id = 2; // You can define the field with equal signature of parent's field 
 	
 	public B() {
 		System.out.println("Constructor from B");

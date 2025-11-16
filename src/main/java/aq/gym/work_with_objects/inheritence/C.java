@@ -10,6 +10,8 @@ public class C extends B {
 		System.out.println("No-static block from C");
 	}
 	
+	protected int id = 3;
+	
 	public C() {
 		System.out.println("Constructor from C");
 	}

@@ -23,5 +23,8 @@ public class ABCTestDrive {
 		};
 //		b.thisMethodDoesntDefineInB(); // ERR! You can't use defined method out of Anonymous class;
 		b.abstractFromB();
+		System.out.println("Id from A = " + a.id);
+		System.out.println("Id from B = " + b.id);
+		System.out.println("Id from B casted to A = " + ((A) b).id);
 	}
 }
