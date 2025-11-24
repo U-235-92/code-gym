@@ -8,7 +8,7 @@ import java.util.Queue;
 
 public final class BinaryTreeLevelTraverser {
 
-	protected static void traverse(TreeNode root) {
+	protected static void print(TreeNode root) {
 		List<List<TreeNode>> levelOrderTraverse = new LinkedList<>();
 		Queue<TreeNode> nextLevelNodes = new ArrayDeque<>();
 		Queue<TreeNode> currLevelNodes = new ArrayDeque<>();
@@ -17,10 +17,10 @@ public final class BinaryTreeLevelTraverser {
 		while(!currLevelNodes.isEmpty()) {
 			TreeNode node = currLevelNodes.poll();
 			if(node.right != null) {
-				nextLevelNodes.add(node.right);
+				nextLevelNodes.add(node.left);
 			}
 			if(node.left != null) {
-				nextLevelNodes.add(node.left);
+				nextLevelNodes.add(node.right);
 			}
 			if(currLevelNodes.isEmpty()) {
 				currLevelNodes = nextLevelNodes;
