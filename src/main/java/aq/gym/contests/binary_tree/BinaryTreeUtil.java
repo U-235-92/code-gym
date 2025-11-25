@@ -6,9 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public final class BinaryTreeLevelTraverser {
+public final class BinaryTreeUtil {
 
-	protected static void print(TreeNode root) {
+	protected static void printByLevel(TreeNode root) {
 		List<List<TreeNode>> levelOrderTraverse = new LinkedList<>();
 		Queue<TreeNode> nextLevelNodes = new ArrayDeque<>();
 		Queue<TreeNode> currLevelNodes = new ArrayDeque<>();
@@ -16,16 +16,18 @@ public final class BinaryTreeLevelTraverser {
 		levelOrderTraverse.add(List.of(root));
 		while(!currLevelNodes.isEmpty()) {
 			TreeNode node = currLevelNodes.poll();
-			if(node.right != null) {
+			if(node.left != null) {
 				nextLevelNodes.add(node.left);
 			}
-			if(node.left != null) {
+			if(node.right != null) {
 				nextLevelNodes.add(node.right);
 			}
 			if(currLevelNodes.isEmpty()) {
 				currLevelNodes = nextLevelNodes;
 				nextLevelNodes = new ArrayDeque<>();
-				levelOrderTraverse.add(new ArrayList<>(currLevelNodes));
+				if(!currLevelNodes.isEmpty()) {					
+					levelOrderTraverse.add(new ArrayList<>(currLevelNodes));
+				}
 			}
 		}
 		levelOrderTraverse.forEach(System.out::println);
