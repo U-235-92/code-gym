@@ -3,7 +3,7 @@ package aq.gym.contests.binary_tree;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PathSum {
+public class PathSum_I {
 
 	public static void main(String[] args) {
 		TreeNode root = new TreeNode(5);
@@ -20,7 +20,7 @@ public class PathSum {
 		n4.left = n7; n4.right = n8;
 		n3.left = n5; n3.right = n6;
 		n6.right = n9;
-		System.out.println(new PathSum().hasPathSumRecursivelyAdvenced(root, 22));
+		System.out.println(new PathSum_I().hasPathSumRecursivelyAdvenced(root, 22));
 	}
 
 	public boolean hasPathSumRecursively(TreeNode root, int targetSum) {
