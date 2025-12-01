@@ -1,4 +1,4 @@
-package aq.gym.contests.array;
+package aq.gym.contests.matrix;
 
 public class IslandPerimeter {
 
