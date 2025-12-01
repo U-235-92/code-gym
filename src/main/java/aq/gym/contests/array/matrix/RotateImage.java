@@ -1,4 +1,4 @@
-package aq.gym.contests.matrix;
+package aq.gym.contests.array.matrix;
 
 import java.util.Arrays;
 
