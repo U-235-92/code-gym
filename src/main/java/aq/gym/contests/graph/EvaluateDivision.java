@@ -14,13 +14,13 @@ public class EvaluateDivision {
 //	https://leetcode.com/problems/evaluate-division/
 	public static void main(String[] args) {
 //		Case #1
-//		List<List<String>> equations = List.of(List.of("a","b"), List.of("b","c"));
-//		double[] values = {2.0,3.0};
-//		List<List<String>> queries = List.of(List.of("c","a"), List.of("a","c"), List.of("b","a"), List.of("a","e"), List.of("a","a"), List.of("x","x"));
+		List<List<String>> equations = List.of(List.of("a","b"), List.of("b","c"));
+		double[] values = {2.0,3.0};
+		List<List<String>> queries = List.of(List.of("c","a"), List.of("a","c"), List.of("b","a"), List.of("a","e"), List.of("a","a"), List.of("x","x"));
 //		Case #2
-		List<List<String>> equations = List.of(List.of("a","b"), List.of("b","c"), List.of("bc","cd"));
-		double[] values = {1.5,2.5,5.0};
-		List<List<String>> queries = List.of(List.of("a","c"), List.of("c","b"), List.of("bc","cd"), List.of("cd","bc"));
+//		List<List<String>> equations = List.of(List.of("a","b"), List.of("b","c"), List.of("bc","cd"));
+//		double[] values = {1.5,2.5,5.0};
+//		List<List<String>> queries = List.of(List.of("a","c"), List.of("c","b"), List.of("bc","cd"), List.of("cd","bc"));
 //		Case #3
 //		List<List<String>> equations = List.of(List.of("a","b"), List.of("c","b"), List.of("d","b"), List.of("w","x"), List.of("y","x"), List.of("z","x"), List.of("w","d"));
 //		double[] values = {2.0,3.0,4.0,5.0,6.0,7.0,8.0};
@@ -76,7 +76,7 @@ public class EvaluateDivision {
 	                    isFound = true;
 	                    break;
 	                }
-					for(Map.Entry<String, Double> neighbour : graph.get(entry.getKey()).entrySet()) {
+					for(Map.Entry<String, Double> neighbour : graph.get(current).entrySet()) {
 						if(!visited.contains(neighbour.getKey())) {
 							visited.add(neighbour.getKey());
 							queue.offer(Map.entry(neighbour.getKey(), value * neighbour.getValue()));
