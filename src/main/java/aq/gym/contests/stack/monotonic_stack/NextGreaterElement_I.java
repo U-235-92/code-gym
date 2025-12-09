@@ -1,4 +1,4 @@
-package aq.gym.contests.monotonic_stack;
+package aq.gym.contests.stack.monotonic_stack;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
