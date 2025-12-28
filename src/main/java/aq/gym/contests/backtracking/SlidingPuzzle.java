@@ -3,10 +3,8 @@ package aq.gym.contests.backtracking;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
@@ -30,14 +28,12 @@ public class SlidingPuzzle {
     public int slidingPuzzle(int[][] board) {
         Set<Board> visited = new HashSet<>();
         Queue<Board> bfs = new ArrayDeque<>();
-        Map<Board, Integer> bfsBoardStatesDepthMap = new HashMap<>();
         Board start = new Board(board, 0);
         bfs.offer(start);
-        bfsBoardStatesDepthMap.put(start, 0);
-        return evaluateMoveCount(bfs, visited, bfsBoardStatesDepthMap);
+        return evaluateMoveCount(bfs, visited);
     }
     
-    private int evaluateMoveCount(Queue<Board> bfs, Set<Board> visited, Map<Board, Integer> bfsBoardStatesDepthMap) {
+    private int evaluateMoveCount(Queue<Board> bfs, Set<Board> visited) {
     	int moveCount = -1;
     	while(!bfs.isEmpty()) {
     		Board board = bfs.poll();
