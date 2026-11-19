@@ -7,6 +7,8 @@ public class Main {
 	public static void main(String[] args) {
 		printCafe();
 		printRandomBytes();
+		byte a = 10;
+		System.out.println(String.format("%x", a));
 		byte b = 17;
 		System.out.println(String.format("%02x", b));
 		int i = 255;
